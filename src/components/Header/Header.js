@@ -8,7 +8,7 @@ export default function Header() {
           <img src={LogoImg} alt="inStock Logo" />
         </div>
         <nav className="nav">
-          <ul>
+          <ul className="nav__nav-list">
             <a className="nav__item" href="/">
               Warehouses
             </a>
