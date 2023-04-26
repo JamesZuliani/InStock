@@ -2,6 +2,15 @@
 @use "./styles/partials/typography" as *;
 @use "./styles/partials/variables" as *;
 
-h1 {
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.body {
   font-family: "Titillium Web", Times, serif;
 }
+
