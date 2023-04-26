@@ -1,8 +1,12 @@
+import WarehouseList from "../components/WarehouseList/WarehouseList";
+
 
 function Warehouse () {
 
     return (
-        <div></div>
+        <div>
+            <WarehouseList />
+        </div>
     )
 };
 
