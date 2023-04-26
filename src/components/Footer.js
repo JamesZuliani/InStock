@@ -1,8 +1,11 @@
+import "./Footer.scss"
 
-function Footer () {
+function Footer() {
 
     return (
-        <div></div>
+        <div className="footer">
+            <p>&copy; InStock Inc. All Rights Reserved.</p>
+        </div>
     )
 };
 
