@@ -1,9 +1,15 @@
-
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/mixins" as *;
 
 .label {
-    color: #5c667e;
-    font-size: 0.8rem;
-    padding-bottom: 0.33rem;
+  color: #5c667e;
+  font-size: 0.8rem;
+  padding-bottom: 0.33rem;
+
+  @include tablet {
+    display: none;
+  }
 }
 
 .warehouse-link {
@@ -18,46 +24,105 @@
   border-top: 1px solid black;
   margin-top: 1rem;
   color: #13182c;
+
+  @include tablet {
+    border-top: none;
+    border-bottom: 1px solid black;
+    display: flex;
+  }
 }
 .warehouse-wrapper {
   display: flex;
   justify-content: space-around;
+
+  @include tablet {
+    justify-content: initial;
+  }
 }
 
 .location-container {
-    width: 10rem;
+  width: 10rem;
+
+  @include tablet {
+    display: flex;
+  }
 }
 
-.contact-container{
-    width: 12rem;
+.contact-container {
+  width: 12rem;
+
+  @include tablet {
+    display: flex;
+    margin-left: 8rem;
+  }
 }
 
 .warehouse-container {
   padding: 0.8rem;
 
+  @include tablet {
+    width:10rem
+  }
+
   &__title {
     color: #2e66e5;
     font-weight: 700;
+
+    &:hover {
+      text-decoration: dotted;
+    }
   }
 }
 
 .address-container {
   padding: 0.8rem;
 
+  @include tablet {
+    width: 15rem;
+    margin-left: 1.75rem;
+  }
+
   &__title {
     width: 9rem;
+
+    @include tablet {
+        width: 8rem;
+    }
   }
 }
 
 .information-container {
   padding: 0.8rem;
+
+  @include tablet {
+    margin-left: 3rem;
+  }
 }
+
 .name-container {
   padding: 0.8rem;
+
+  &__title {
+    @include tablet {
+        width: 6rem;
+    }
+  }
 }
+
 .button-container {
   width: 80%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
+
+  @include tablet {
+    justify-content: flex-end;
+  }
+}
+
+.action-icon {
+  @include tablet {
+    height: 1.75rem;
+    margin: 0 1rem;
+  }
 }
