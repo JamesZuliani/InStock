@@ -2,6 +2,8 @@
 
 .label {
     color: #5c667e;
+    font-size: 0.8rem;
+    padding-bottom: 0.33rem;
 }
 
 .warehouse-link {
@@ -10,10 +12,6 @@
   &__name {
     display: flex;
   }
-
-  // &:hover {
-
-  // }
 }
 
 .warehouse {
@@ -35,7 +33,7 @@
 }
 
 .warehouse-container {
-  padding: 1rem;
+  padding: 0.8rem;
 
   &__title {
     color: #2e66e5;
@@ -44,7 +42,7 @@
 }
 
 .address-container {
-  padding: 1rem;
+  padding: 0.8rem;
 
   &__title {
     width: 9rem;
@@ -52,10 +50,10 @@
 }
 
 .information-container {
-  padding: 1rem;
+  padding: 0.8rem;
 }
 .name-container {
-  padding: 1rem;
+  padding: 0.8rem;
 }
 .button-container {
   width: 80%;
