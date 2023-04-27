@@ -1,0 +1,138 @@
+@use "../styles/partials/mixins" as *;
+@use "../styles/partials/typography" as *;
+@use "../styles/partials/variables" as *;
+
+.details {
+  bottom: 5rem;
+  position: relative;
+  background-color: $global-color;
+  margin: 1rem;
+  border-radius: 3px;
+  box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
+
+  @include tablet {
+    margin: 2rem;
+    bottom: 7rem;
+  }
+
+  @include desktop {
+    width: calc($desktop-breakpoint - 4rem);
+    margin: 0 auto;
+    bottom: 5rem;
+  }
+
+  &__title--container {
+    display: flex;
+    border-bottom: 1px solid #bdc5d5;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    padding: 0rem 2rem;
+
+    @include tablet {
+      height: 5rem;
+    }
+  }
+
+  &__container--1 {
+    display: flex;
+    align-items: baseline;
+  }
+  &__back-button {
+    transition: all 0.3s;
+    &:hover {
+      filter: opacity(0.7);
+    }
+  }
+
+  &__title {
+    padding: 2rem 0.5rem;
+
+    @include tablet {
+      margin-top: 0.5rem;
+    }
+  }
+
+  &__section {
+    padding: 2rem;
+
+    @include tablet {
+      display: flex;
+
+      width: 86%;
+      justify-content: space-between;
+    }
+  }
+
+  &__subtitle {
+    color: $table-placeholder-text;
+    margin-bottom: 0.5rem;
+  }
+
+  &__subtitle--container {
+    display: flex;
+    justify-content: space-between;
+
+    @include tablet {
+      border-left: 1px solid #bdc5d5;
+      padding-left: 4rem;
+    }
+  }
+
+  &__contact--container {
+    margin-left: 5rem;
+  }
+
+  &__address--container {
+    padding-bottom: 2rem;
+    @include tablet {
+      padding: 0 2rem 2rem 0rem;
+    }
+  }
+
+  &__edit--hidden {
+    display: none;
+
+    @include tablet {
+      color: $global-color;
+      display: block;
+    }
+  }
+
+  &__button--edit {
+    background-color: $primary-cta-color;
+    background-image: url("../assets/icons/editdetails-24px.svg");
+    background-color: #2e66e5;
+    border-radius: 50%;
+    padding: 1.2rem;
+    background-repeat: no-repeat;
+    background-size: 1.6rem;
+    background-position: 47%;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    &:hover {
+      background-color: #232940;
+    }
+
+    @include tablet {
+      padding: 0.7rem;
+      width: 5.5rem;
+      display: flex;
+      border-radius: 20px;
+      background-position: 20%;
+      margin-top: 0.5rem;
+    }
+  }
+
+  &__button--text {
+    display: none;
+
+    @include tablet {
+      display: flex;
+      margin-left: 2.5rem;
+      color: $global-color;
+    }
+  }
+}

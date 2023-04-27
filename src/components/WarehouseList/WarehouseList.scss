@@ -1,0 +1,183 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/mixins" as *;
+
+.label {
+  color: #5c667e;
+  font-size: 0.8rem;
+  padding-bottom: 0.33rem;
+  font-size: 0.6875rem;
+
+  @include tablet {
+    display: none;
+  }
+}
+
+.warehouse-link {
+  text-decoration: none;
+
+  &__name {
+    display: flex;
+
+    @include tablet {
+      width: 20%;
+    }
+  }
+}
+
+.warehouse {
+  border-top: 1px solid $outline-color;
+  margin-top: 1rem;
+  color: $primary-text-color;
+
+  @include tablet {
+    margin-top: 0;
+    border-top: none;
+    border-bottom: 1px solid $outline-color;
+    display: flex;
+    display: none;
+  }
+
+  &--border {
+    @include tablet {
+      border-bottom: 1px solid $outline-color;
+    }
+  }
+  &--fullscreen {
+    display: none;
+    transition: all 0.3s;
+
+    &:hover {
+      background-color: rgba(46, 102, 229, 0.07);
+    }
+
+    @include tablet {
+      display: flex;
+      padding: 0.4rem 2rem;
+      align-items: center;
+    }
+  }
+}
+
+.warehouse-wrapper {
+  display: flex;
+  justify-content: space-around;
+
+  @include tablet {
+    justify-content: initial;
+  }
+}
+
+.location-container {
+  width: 10rem;
+
+  @include tablet {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.contact-container {
+  width: 12rem;
+
+  @include tablet {
+    display: flex;
+    margin-left: 8rem;
+  }
+}
+
+.warehouse-container {
+  padding: 0.8rem;
+
+  @include tablet {
+    width: 20%;
+  }
+
+  &__title {
+    color: #2e66e5;
+    font-weight: 700;
+    align-self: center;
+    font-size: 0.875rem;
+    transition: all 0.3s;
+
+    &:hover {
+      text-decoration: underline;
+      padding-right: 0.2rem;
+    }
+  }
+}
+
+.address-container {
+  padding: 0.8rem;
+
+  @include tablet {
+    width: 20%;
+    padding-left: 0;
+  }
+
+  &__title {
+    font-size: 0.875rem;
+  }
+}
+
+.information-container {
+  padding: 0.8rem;
+
+  @include tablet {
+    width: 20%;
+    font-size: 0.875rem;
+  }
+
+  &__phone {
+    font-size: 0.875rem;
+  }
+
+  &__email {
+    font-size: 0.875rem;
+  }
+}
+
+.name-container {
+  padding: 0.8rem;
+
+  @include tablet {
+    width: 20%;
+    padding-left: 0.6rem;
+  }
+
+  &__title {
+    font-size: 0.875rem;
+  }
+}
+
+.button-container {
+  width: 80%;
+  margin: 0 auto;
+  // padding-left: 2rem;
+  padding: 0 0.8rem;
+  display: flex;
+  justify-content: space-between;
+
+  @include tablet {
+    width: 20%;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.action-icon {
+  border-radius: 22px;
+  transition: all .3s;
+  padding: .2rem;
+  &:hover {
+    background-color: rgba(46, 102, 229, 0.07);
+  }
+  @include tablet {
+    height: 2rem;
+    margin: 0 0 0 1rem;
+  }
+}
+
+.vector-icon {
+  width: 1rem;
+}
