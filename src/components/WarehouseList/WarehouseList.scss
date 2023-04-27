@@ -26,11 +26,12 @@
 }
 
 .warehouse {
-    border-top: 1px solid $outline-color;
+  border-top: 1px solid $outline-color;
   margin-top: 1rem;
-  color: #13182c;
+  color: $primary-text-color;
 
   @include tablet {
+    margin-top: 0;
     border-top: none;
     border-bottom: 1px solid $outline-color;
     display: flex;
@@ -44,6 +45,11 @@
   }
   &--fullscreen {
     display: none;
+    transition: all 0.3s;
+
+    &:hover {
+      background-color: rgba(46, 102, 229, 0.07);
+    }
 
     @include tablet {
       display: flex;
@@ -92,9 +98,11 @@
     font-weight: 700;
     align-self: center;
     font-size: 0.875rem;
+    transition: all 0.3s;
 
     &:hover {
-      text-decoration: dotted;
+      text-decoration: underline;
+      padding-right: 0.2rem;
     }
   }
 }
@@ -145,6 +153,7 @@
 .button-container {
   width: 80%;
   margin: 0 auto;
+  padding-left: 2rem;
   display: flex;
   justify-content: space-between;
 
@@ -156,9 +165,15 @@
 }
 
 .action-icon {
+  border-radius: 22px;
+  transition: all .3s;
+  padding: .2rem;
+  &:hover {
+    background-color: rgba(46, 102, 229, 0.07);
+  }
   @include tablet {
-    height: 1.75rem;
-    margin: 0 1rem;
+    height: 2rem;
+    margin: 0 0 0 1rem;
   }
 }
 
