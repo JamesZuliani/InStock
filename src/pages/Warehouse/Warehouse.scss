@@ -12,13 +12,17 @@
   background-color: white;
   border-radius: 5px;
 
+  @include tablet {
+    width: calc(100% - 4rem);
+  }
+
   &__header {
     @include tablet {
-        display: flex;
-        justify-content: space-between;
-        width: 90%;
-        margin: 0 auto;
-        margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      width: 90%;
+      margin: 0 auto;
+      margin-bottom: 1.5rem;
     }
   }
 }
@@ -29,14 +33,13 @@
   @include tablet {
     padding: 0;
     padding-top: 1.5rem;
-
   }
 }
 
 .buttons {
-    @include tablet {
-        display: flex;
-    }
+  @include tablet {
+    display: flex;
+  }
 }
 
 .search-bar {
@@ -65,7 +68,7 @@
     }
 
     @include tablet {
-        margin-right: 0;
+      margin-right: 0;
     }
   }
 
@@ -101,9 +104,8 @@
     }
 
     @include tablet {
-        padding: 0.65rem 0;
+      padding: 0.65rem 0;
     }
-
   }
 }
 
@@ -112,12 +114,13 @@
 
   @include tablet {
     display: flex;
+    // width: 20%;
   }
 }
 
 .fullscreen-labels {
-    display: flex;
-    justify-content: space-around;
-    background-color: #fafafa;
-    padding: 0.75rem 0;
+  display: flex;
+  justify-content: space-around;
+  background-color: #fafafa;
+  padding: 0.75rem 0;
 }

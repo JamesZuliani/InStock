@@ -45,6 +45,7 @@
 
   @include tablet {
     display: flex;
+    justify-content: space-between;
   }
 }
 
@@ -61,7 +62,7 @@
   padding: 0.8rem;
 
   @include tablet {
-    width:10rem
+    width: 20%
   }
 
   &__title {
@@ -78,7 +79,7 @@
   padding: 0.8rem;
 
   @include tablet {
-    width: 15rem;
+    width: 20%;
     margin-left: 1.75rem;
   }
 
@@ -95,7 +96,7 @@
   padding: 0.8rem;
 
   @include tablet {
-    margin-left: 3rem;
+    margin-left: 2.5rem;
   }
 }
 
