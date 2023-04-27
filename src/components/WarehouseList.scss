@@ -1,0 +1,165 @@
+@use "../styles/partials/variables" as *;
+@use "../styles/partials/typography" as *;
+@use "../styles/partials/mixins" as *;
+
+.label {
+  color: #5c667e;
+  font-size: 0.8rem;
+  padding-bottom: 0.33rem;
+
+  @include tablet {
+    display: none;
+  }
+}
+
+.warehouse-link {
+  text-decoration: none;
+
+  &__name {
+    display: flex;
+    width: 100%;
+
+    img {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+.warehouse {
+  border-top: 1px solid black;
+  margin-top: 1rem;
+  color: #13182c;
+  text-decoration: none;
+
+  @include tablet {
+    border-top: none;
+    border-bottom: 1px solid black;
+    display: flex;
+    width: 100%;
+  }
+}
+.warehouse-wrapper {
+  display: flex;
+  justify-content: space-around;
+
+  @include tablet {
+    justify-content: initial;
+    width: 100%;
+  }
+}
+
+.location-container {
+  width: 10rem;
+
+  @include tablet {
+    display: flex;
+    justify-content:flex-start;
+    width: 100%;
+    padding-left: 2.2rem;
+  }
+}
+
+.contact-container {
+  width: 12rem;
+
+  @include tablet {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+  }
+}
+
+.warehouse-container {
+  padding: 0.8rem;
+
+  @include tablet {
+    display: flex;
+    width: 40%;
+    justify-content:flex-start;
+    align-items: center;
+  } 
+
+  &__title {
+    color: #2e66e5;
+    font-weight: 700;
+
+    &:hover {
+      text-decoration: dotted;
+    }
+  }
+}
+
+.address-container {
+  padding: 0.8rem;
+
+  @include tablet {
+    margin-left: 1.75rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  &__title {
+    width: 9rem;
+
+    @include tablet {
+        width: 8rem;
+    }
+  }
+}
+
+.information-container {
+  padding: 0.8rem;
+
+  @include tablet {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+}
+
+.name-container {
+  padding: 0.8rem;
+  width: 47%;
+
+  @include tablet {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  &__title {
+    @include tablet {
+        width: 80%;
+    }
+  }
+}
+
+.button-container {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+
+  @include tablet {
+    justify-content: flex-end;
+    width: 20%;
+    align-items: center;
+  }
+
+  img {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.action-icon {
+  @include tablet {
+    height: 1.75rem;
+    margin: 0 1rem;
+  }
+}
