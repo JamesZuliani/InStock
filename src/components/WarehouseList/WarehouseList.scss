@@ -6,6 +6,7 @@
   color: #5c667e;
   font-size: 0.8rem;
   padding-bottom: 0.33rem;
+  font-size: 0.6875rem;
 
   @include tablet {
     display: none;
@@ -17,20 +18,41 @@
 
   &__name {
     display: flex;
+
+    @include tablet {
+      width: 20%;
+    }
   }
 }
 
 .warehouse {
-  border-top: 1px solid black;
+    border-top: 1px solid $outline-color;
   margin-top: 1rem;
   color: #13182c;
 
   @include tablet {
     border-top: none;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid $outline-color;
     display: flex;
+    display: none;
+  }
+
+  &--border {
+    @include tablet {
+      border-bottom: 1px solid $outline-color;
+    }
+  }
+  &--fullscreen {
+    display: none;
+
+    @include tablet {
+      display: flex;
+      padding: 0.4rem 2rem;
+      align-items: center;
+    }
   }
 }
+
 .warehouse-wrapper {
   display: flex;
   justify-content: space-around;
@@ -62,12 +84,14 @@
   padding: 0.8rem;
 
   @include tablet {
-    width: 20%
+    width: 20%;
   }
 
   &__title {
     color: #2e66e5;
     font-weight: 700;
+    align-self: center;
+    font-size: 0.875rem;
 
     &:hover {
       text-decoration: dotted;
@@ -80,15 +104,11 @@
 
   @include tablet {
     width: 20%;
-    margin-left: 1.75rem;
+    padding-left: 0;
   }
 
   &__title {
-    width: 9rem;
-
-    @include tablet {
-        width: 8rem;
-    }
+    font-size: 0.875rem;
   }
 }
 
@@ -96,17 +116,29 @@
   padding: 0.8rem;
 
   @include tablet {
-    margin-left: 2.5rem;
+    width: 20%;
+    font-size: 0.875rem;
+  }
+
+  &__phone {
+    font-size: 0.875rem;
+  }
+
+  &__email {
+    font-size: 0.875rem;
   }
 }
 
 .name-container {
   padding: 0.8rem;
 
+  @include tablet {
+    width: 20%;
+    padding-left: 0.6rem;
+  }
+
   &__title {
-    @include tablet {
-        width: 6rem;
-    }
+    font-size: 0.875rem;
   }
 }
 
@@ -117,7 +149,9 @@
   justify-content: space-between;
 
   @include tablet {
-    justify-content: flex-end;
+    width: 20%;
+    justify-content: center;
+    align-items: center;
   }
 }
 
@@ -126,4 +160,8 @@
     height: 1.75rem;
     margin: 0 1rem;
   }
+}
+
+.vector-icon {
+  width: 1rem;
 }

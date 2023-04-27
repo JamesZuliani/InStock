@@ -14,8 +14,12 @@
 
   @include tablet {
     width: calc(100% - 4rem);
+    padding-bottom: 0;
   }
 
+  @include desktop {
+    width: calc($desktop-breakpoint - 4rem);
+  }
   &__header {
     @include tablet {
       display: flex;
@@ -69,11 +73,12 @@
 
     @include tablet {
       margin-right: 0;
+      width: 11.5rem;
     }
   }
 
   &__icon {
-    margin-right: 1.5rem;
+    padding-right: 2rem;
   }
 }
 
@@ -114,7 +119,20 @@
 
   @include tablet {
     display: flex;
-    // width: 20%;
+    width: 20%;
+    // margin-left: 1rem;
+    height: fit-content;
+  }
+}
+
+.contact-info-label {
+  width: 24%;
+}
+.actions-info-label {
+  @include tablet {
+    width: 16%;
+    display: inline;
+    text-align: center;
   }
 }
 
@@ -123,4 +141,16 @@
   justify-content: space-around;
   background-color: #fafafa;
   padding: 0.75rem 0;
+
+  @include tablet {
+    padding-left: 2rem;
+    padding-right: 1rem;
+    font-size: 0.75rem;
+    // align-items: center;
+  }
+}
+
+.sort-icon {
+  width: 1rem;
+  margin-left: 0.2rem;
 }
