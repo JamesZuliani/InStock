@@ -3,7 +3,7 @@
 
 .header {
   background-color: $navigation-header-background;
-  padding: 1rem 1rem 6rem 1rem;
+  padding: 1rem 1rem 9rem 1rem;
   &__container {
     display: flex;
     justify-content: center;
@@ -33,7 +33,7 @@
     }
   }
   @include tablet {
-    padding: 2rem 2rem 6rem 2rem;
+    padding: 2rem 2rem 9rem 2rem;
   }
 }
 .nav {
