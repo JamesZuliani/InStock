@@ -8,7 +8,7 @@ import "./WarehouseList.scss";
 
 const baseUrl = "http://localhost:8080";
 
-export default function WarehouseList({ handleWarehouseClick }) {
+export default function WarehouseList() {
   const [warehouses, setWarehouses] = useState([]);
 
   useEffect(() => {

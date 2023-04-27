@@ -25,6 +25,7 @@
     @include tablet {
       display: flex;
       justify-content: space-between;
+      align-items: center;
       width: 90%;
       // margin: 0 auto;
       margin: 0 2rem;
@@ -38,7 +39,6 @@
 
   @include tablet {
     padding: 0;
-    padding-top: 1.5rem;
     padding-right: 1rem;
   }
 }
@@ -79,7 +79,7 @@
 
     @include tablet {
       margin-right: 0;
-      // width: 11.5rem;
+      width: 11.5rem;
     }
   }
 
