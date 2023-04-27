@@ -1,0 +1,156 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/mixins" as *;
+
+.warehouse-list-page {
+  width: 90%;
+  margin: 0 auto;
+  box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.2);
+  padding-bottom: 1.33rem;
+  position: relative;
+  bottom: 4rem;
+  background-color: white;
+  border-radius: 5px;
+
+  @include tablet {
+    width: calc(100% - 4rem);
+    padding-bottom: 0;
+  }
+
+  @include desktop {
+    width: calc($desktop-breakpoint - 4rem);
+  }
+  &__header {
+    @include tablet {
+      display: flex;
+      justify-content: space-between;
+      width: 90%;
+      margin: 0 auto;
+      margin-bottom: 1.5rem;
+    }
+  }
+}
+
+.heading {
+  padding: 2.25rem 0 0.33rem 1.5rem;
+
+  @include tablet {
+    padding: 0;
+    padding-top: 1.5rem;
+  }
+}
+
+.buttons {
+  @include tablet {
+    display: flex;
+  }
+}
+
+.search-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 1rem;
+  border: 1px solid grey;
+  border-radius: 22px;
+  width: 90%;
+  margin: 1.25rem auto;
+
+  @include tablet {
+    width: 15rem;
+  }
+
+  &__input {
+    margin: 0.8rem 1rem;
+    border-style: none;
+    border-color: white;
+    color: black;
+    font-size: 1rem;
+
+    &:focus-visible {
+      outline-color: white;
+    }
+
+    @include tablet {
+      margin-right: 0;
+      width: 11.5rem;
+    }
+  }
+
+  &__icon {
+    padding-right: 2rem;
+  }
+}
+
+.add-warehouse {
+  background-color: #2e66e6;
+  width: 90%;
+  margin: 0 auto;
+  border-radius: 23px;
+
+  &:hover {
+    background-color: #232940;
+  }
+
+  @include tablet {
+    height: fit-content;
+    align-self: center;
+    width: 12rem;
+    margin-left: 2rem;
+  }
+
+  &__text {
+    color: white;
+    text-align: center;
+    padding: 0.75rem 0;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    @include tablet {
+      padding: 0.65rem 0;
+    }
+  }
+}
+
+.label--fullscreen {
+  display: none;
+
+  @include tablet {
+    display: flex;
+    width: 20%;
+    // margin-left: 1rem;
+    height: fit-content;
+  }
+}
+
+.contact-info-label {
+  width: 24%;
+}
+.actions-info-label {
+  @include tablet {
+    width: 16%;
+    display: inline;
+    text-align: center;
+  }
+}
+
+.fullscreen-labels {
+  display: flex;
+  justify-content: space-around;
+  background-color: #fafafa;
+  padding: 0.75rem 0;
+
+  @include tablet {
+    padding-left: 2rem;
+    padding-right: 1rem;
+    font-size: 0.75rem;
+    // align-items: center;
+  }
+}
+
+.sort-icon {
+  width: 1rem;
+  margin-left: 0.2rem;
+}
