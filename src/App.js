@@ -9,6 +9,7 @@ import EditInventory from "./pages/EditInventory";
 import AddNewWarehouse from "./pages/AddNewWarehouse";
 import AddNewInventory from "./pages/AddNewInventory";
 import WarehouseDetails from "./pages/WarehouseDetails";
+import InventoryDetails from "./pages/InventoryDetails";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -24,7 +25,7 @@ function App() {
         <Route path="warehouse/:id/edit" element={<EditWarehouse />} />
         <Route path="warehouse/new" element={<AddNewWarehouse />} />
         <Route path="inventory" element={<Inventory />} />
-        <Route path="inventory/:id" element={<Inventory />} />
+        <Route path="inventory/details/:id" element={<InventoryDetails />} />
         <Route path="inventory/:id/edit" element={<EditInventory />} />
         <Route path="inventory/new" element={<AddNewInventory />} />
       </Routes>
