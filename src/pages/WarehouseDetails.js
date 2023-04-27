@@ -17,7 +17,7 @@ function WarehouseDetails() {
       console.log(data);
     };
     fetchsingleWarehouse();
-  }, []);
+  });
 
   return (
     <div className="details">
