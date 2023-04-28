@@ -2,8 +2,34 @@ import WarehouseList from "../../components/WarehouseList/WarehouseList";
 import "./Warehouse.scss";
 import search from "../../assets/icons/search-24px.svg";
 import sort from "../../assets/icons/sort-24px.svg";
+import { Link } from "react-router-dom";
+import DeleteWarehouse from "../../components/DeleteWarehouse/DeleteWarehouse";
+import { useState, useEffect } from "react";
+import axios from "axios";
+
+const baseUrl = "http://localhost:8080";
 
 function Warehouse() {
+
+  const [selectedWarehouse, setSelectedWarehouse] = useState();
+
+  const [isActive, setIsActive] = useState(false);
+
+  function handleClassToggle(warehouse) {
+    setIsActive(!isActive);
+    const body = document.querySelector('body');
+    body.classList.toggle('modal-open');
+    setSelectedWarehouse(warehouse);
+}
+
+const [warehouses, setWarehouses] = useState([]);
+
+  useEffect(() => {
+    axios.get(`${baseUrl}/api/warehouses`).then(({ data }) => {
+      setWarehouses(data);
+    });
+  }, []);
+
   return (
     <div className="warehouse-list-page">
       <div className="warehouse-list-page__header">
@@ -23,9 +49,9 @@ function Warehouse() {
               alt="search-Icon"
             ></img>
           </div>
-          <div className="add-warehouse">
-            <p className="add-warehouse__text">+ Add New Warehouse</p>
-          </div>
+          <Link to="/warehouse/new" className="warehouse-list-page__add-button">
+            + Add New Warehouse
+          </Link>
         </div>
       </div>
       <div className="fullscreen-labels">
@@ -39,7 +65,11 @@ function Warehouse() {
         </div>
         <div className="address-label label--fullscreen">
           <p className="address-label__text">ADDRESS</p>
-          <img className="address-label__icon sort-icon" src={sort} alt="sort-icon"></img>
+          <img
+            className="address-label__icon sort-icon"
+            src={sort}
+            alt="sort-icon"
+          ></img>
         </div>
         <div className="contact-name-label label--fullscreen">
           <p className="contact-name-label__text">CONTACT NAME</p>
@@ -59,7 +89,8 @@ function Warehouse() {
         </div>
         <p className="actions-info-label label--fullscreen">ACTIONS</p>
       </div>
-      <WarehouseList />
+      <WarehouseList warehouses={warehouses} handleClassToggle={handleClassToggle} />
+      {selectedWarehouse&&<DeleteWarehouse setWarehouses={setWarehouses} selectedWarehouse={selectedWarehouse} handleClassToggle={handleClassToggle} isActive={!isActive}/>}
     </div>
   );
 }

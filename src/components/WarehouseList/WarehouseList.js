@@ -8,14 +8,7 @@ import "./WarehouseList.scss";
 
 const baseUrl = "http://localhost:8080";
 
-export default function WarehouseList() {
-  const [warehouses, setWarehouses] = useState([]);
-
-  useEffect(() => {
-    axios.get(`${baseUrl}/api/warehouses`).then(({ data }) => {
-      setWarehouses(data);
-    });
-  }, []);
+export default function WarehouseList({ warehouses, handleClassToggle }) {
 
   return warehouses.map((warehouse, index) => {
     return (
@@ -65,7 +58,7 @@ export default function WarehouseList() {
             </div>
           </div>
           <div className="button-container">
-            <img
+            <img onClick={() => handleClassToggle(warehouse.id)}
               className="action-icon"
               src={deleteIcon}
               alt="delete-icon"
