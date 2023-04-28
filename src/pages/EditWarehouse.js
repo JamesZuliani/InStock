@@ -1,10 +1,5 @@
-
-
-function EditWarehouse () {
-
-    return (
-        <div></div>
-    )
-};
+function EditWarehouse() {
+  return <div></div>;
+}
 
 export default EditWarehouse;
