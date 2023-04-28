@@ -21,12 +21,39 @@ function AddNewWarehouse() {
     },
 
     validationSchema: Yup.object({
-      warehouse_name: Yup.string().required("This field is required"),
-      address: Yup.string().required("This field is required"),
-      city: Yup.string().required("This field is required"),
-      country: Yup.string().required("This field is required"),
-      contact_name: Yup.string().required("This field is required"),
-      contact_position: Yup.string().required("This field is required"),
+      warehouse_name: Yup.string()
+        .matches(
+          /^(?! )\S+(?: \S+)*$/,
+          "Warehouse name shoudn't only contain, start or end with space character"
+        )
+        .required("This field is required"),
+      address: Yup.string()
+        .matches(
+          /^(?! )\S+(?: \S+)*$/,
+          "Address shoudn't only contain, start or end with space character"
+        )
+        .required("This field is required"),
+      city: Yup.string()
+        .matches(
+          /^(?! )\S+(?: \S+)*$/,
+          "City shoudn't only contain, start or end with space character"
+        )
+        .required("This field is required"),
+      country: Yup.string()
+        .matches(
+          /^(?! )\S+(?: \S+)*$/,
+          "Country shoudn't only contain, start or end with space character"
+        )
+        .required("This field is required"),
+      contact_name: Yup.string()
+        .matches(
+          /^(?! )\S+(?: \S+)*$/,
+          "Contact name shoudn't only contain, start or end with space character"
+        )
+        .required("This field is required"),
+      contact_position: Yup.string()
+        .matches(/^(?! )\S+(?: \S+)*$/, "Contact position shoudn't only contain, start or end with space character")
+        .required("This field is required"),
       contact_phone: Yup.string()
         .matches(/^\+\d{1,3} \(\d{3}\) \d{3}-\d{4}$/, "Invalid phone number")
         .required("This field is required"),
@@ -41,7 +68,7 @@ function AddNewWarehouse() {
     onSubmit: async (values, e) => {
       // Handle form submission here
       try {
-        await axios.post("http://localhost:8080/api/warehoues", values);
+        await axios.post("http://localhost:8080/api/warehouses", values);
         e.resetForm();
         alert("Successfully submitted");
         navigate("/warehouse");
