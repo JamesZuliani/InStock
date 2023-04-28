@@ -13,7 +13,9 @@ import InventoryDetails from "./pages/InventoryDetails";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+
 function App() {
+
   return (
     <BrowserRouter>
       <Header />
