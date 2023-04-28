@@ -2,9 +2,9 @@ import WarehouseList from "../../components/WarehouseList/WarehouseList";
 import "./Warehouse.scss";
 import search from "../../assets/icons/search-24px.svg";
 import sort from "../../assets/icons/sort-24px.svg";
+import { Link } from "react-router-dom";
 import DeleteWarehouse from "../../components/DeleteWarehouse/DeleteWarehouse";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router";
 import axios from "axios";
 
 const baseUrl = "http://localhost:8080";
@@ -49,9 +49,9 @@ const [warehouses, setWarehouses] = useState([]);
               alt="search-Icon"
             ></img>
           </div>
-          <div className="add-warehouse">
-            <p className="add-warehouse__text">+ Add New Warehouse</p>
-          </div>
+          <Link to="/warehouse/new" className="warehouse-list-page__add-button">
+            + Add New Warehouse
+          </Link>
         </div>
       </div>
       <div className="fullscreen-labels">
@@ -65,7 +65,11 @@ const [warehouses, setWarehouses] = useState([]);
         </div>
         <div className="address-label label--fullscreen">
           <p className="address-label__text">ADDRESS</p>
-          <img className="address-label__icon sort-icon" src={sort} alt="sort-icon"></img>
+          <img
+            className="address-label__icon sort-icon"
+            src={sort}
+            alt="sort-icon"
+          ></img>
         </div>
         <div className="contact-name-label label--fullscreen">
           <p className="contact-name-label__text">CONTACT NAME</p>
