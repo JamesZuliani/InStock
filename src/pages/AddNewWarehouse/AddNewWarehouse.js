@@ -6,9 +6,8 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 
-
 function AddNewWarehouse() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       warehouse_name: "",
@@ -43,14 +42,14 @@ function AddNewWarehouse() {
       // Handle form submission here
       try {
         await axios.post("http://localhost:8080/api/warehoues", values);
-        // e.resetForm()
-        // alert("Successfully submitted");
-        // navigate('/warehouse');
-        
-
+        e.resetForm();
+        alert("Successfully submitted");
+        navigate("/warehouse");
       } catch (err) {
-        e.resetForm()
-        alert(`${err.message} (${err.response.statusText})\n\nTry again later...`);
+        e.resetForm();
+        alert(
+          `${err.message} (${err.response.statusText})\n\nTry again later...`
+        );
       }
     },
   });
