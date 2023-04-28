@@ -46,3 +46,16 @@ h3 {
   }
 }
 
+h4 {
+  font-family: "Titillium Web";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.688rem;
+  line-height: 1rem;
+  text-transform: uppercase;
+
+  @include tablet {
+    font-size: 0.75rem;
+    line-height: 1.125rem;
+  }
+}
