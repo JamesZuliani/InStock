@@ -69,7 +69,9 @@ export default function WarehouseList({ warehouses, handleClassToggle }) {
               src={deleteIcon}
               alt="delete-icon"
             ></img>
-            <img className="action-icon" src={editIcon} alt="edit-icon"></img>
+            <img className="action-icon" src={editIcon} alt="edit-icon" onClick={(e)=>{
+              e.preventDefault();
+              navigate(`/warehouse/${warehouse.id}/edit`)}}></img>
           </div>
         </div>
 
@@ -122,7 +124,9 @@ export default function WarehouseList({ warehouses, handleClassToggle }) {
                 handleClassToggle(warehouse)
               }}
             ></img>
-            <img className="action-icon" src={editIcon} alt="edit-icon"></img>
+            <img className="action-icon" src={editIcon} alt="edit-icon" onClick={(e)=>{
+               e.preventDefault();
+              navigate(`/warehouse/${warehouse.id}/edit`)}}></img>
           </div>
         </div>
       </Link>
