@@ -204,7 +204,7 @@ function WarehouseDetails() {
                         className="action-icon"
                         src={deleteIcon}
                         alt="delete-icon"
-                      ></img>
+                      ></img> 
                       <img
                         className="action-icon"
                         src={editIcon}
