@@ -2,7 +2,7 @@
 @use "../../styles/partials/typography" as *;
 @use "../../styles/partials/mixins" as *;
 
-.warehouse-list-page {
+.inventory-list-page {
   width: 90%;
   margin: 0 auto;
   box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
@@ -28,30 +28,7 @@
       align-items: center;
       width: 90%;
       margin: 0 2rem;
-    }
-  }
-  &__add-button-container {
-    display: flex;
-  }
-  &__add-button {
-    display: flex;
-
-    justify-content: center;
-    flex: 1;
-    text-decoration: none;
-    border-radius: 23px;
-    color: white;
-    padding: 0.5rem 0;
-    margin: 0.5rem 1rem 1.5rem 1rem;
-
-    background-color: #2e66e6;
-    transition: 0.3s all;
-    &:hover {
-      cursor: pointer;
-      background-color: #232940;
-    }
-    @include tablet {
-      padding: 0.5rem 1rem;
+      // margin-bottom: 1.5rem;
     }
   }
 }
@@ -68,7 +45,6 @@
 .buttons {
   @include tablet {
     display: flex;
-    align-items: baseline;
   }
 }
 
@@ -111,47 +87,44 @@
   }
 }
 
-// .add-warehouse {
-//   padding: 0 2rem;
-//   width: 100%;
-//   margin: 0 auto;
+.add-inventory {
+  background-color: #2e66e6;
+  width: 90%;
+  margin: 0 auto;
+  border-radius: 23px;
+  transition: 0.3s all;
+  &:hover {
+    background-color: #232940;
+  }
 
-//   @include tablet {
-//     height: fit-content;
-//     align-self: center;
-//     width: 12rem;
-//     margin-left: 2rem;
-//   }
+  @include tablet {
+    height: fit-content;
+    align-self: center;
+    width: 12rem;
+    margin-left: 2rem;
+  }
 
-//   &__text {
-//     border-radius: 23px;
-//     padding: 0 2rem;
+  &__text {
+    color: white;
+    text-align: center;
+    padding: 0.75rem 0;
 
-//     text-decoration: none;
-//     background-color: #2e66e6;
-//     color: white;
-//     text-align: center;
-//     padding: 0.75rem 0;
-//     transition: 0.3s all;
+    &:hover {
+      cursor: pointer;
+    }
 
-//     &:hover {
-//       cursor: pointer;
-//       background-color: #232940;
-//     }
-
-//   @include tablet {
-//     margin: 0 2rem;
-//   //   }
-//   // }
-// }
+    @include tablet {
+      padding: 0.65rem 0;
+    }
+  }
+}
 
 .label--fullscreen {
   display: none;
 
   @include tablet {
     display: flex;
-    width: 20%;
-    // margin-left: 1rem;
+    width: 16.2%;
     height: fit-content;
   }
 }
@@ -177,7 +150,6 @@
     padding-left: 2rem;
     padding-right: 1rem;
     font-size: 0.75rem;
-    // align-items: center;
   }
 }
 
@@ -185,3 +157,4 @@
   width: 1rem;
   margin-left: 0.2rem;
 }
+
