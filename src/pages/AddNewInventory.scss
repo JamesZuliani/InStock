@@ -89,6 +89,10 @@
   }
 }
 
+.invitem-details__quantity{
+
+}
+
 .invitem-details__subtitle {
   color: $table-placeholder-text;
 
@@ -158,6 +162,7 @@
 
 .invradio-buttons__instock {
   margin-right: 4rem;
+  
 }
 
 .invradio-buttons__input {
@@ -221,6 +226,12 @@ input {
     color: $global-color;
     font-size: 0.8125rem;
     line-height: 1.25rem;
+    width:6.125rem;
+    height:2.375rem;
+  }
+
+  @include desktop{
+    
   }
 }
 
@@ -247,7 +258,8 @@ input {
     display: flex;
     border-radius: 20px;
     margin-top: 0.5rem;
-    width: 4rem;
+    width: 4.5rem;
+    height:2.375rem;
     margin-right: 2rem;
   }
 
@@ -262,11 +274,12 @@ input {
   color: $table-placeholder-text;
 }
 
-.item-footer {
+.invitem-footer {
   display: flex;
   justify-content: space-around;
   background-color: $page-background;
   padding: 1rem;
+  gap:1rem;
 
   @include tablet {
     justify-content: flex-end;

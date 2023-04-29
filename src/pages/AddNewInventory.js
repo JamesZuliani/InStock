@@ -163,28 +163,31 @@ function AddNewInventoryItem() {
           <div className="invitem-details__availability">
             <h2 className="invitem-details__header">Item Availability</h2>
             <h3 className="invitem-details__subtitle">Status</h3>
-            <div className="radio-buttons-container">
-              <label className="radio-buttons__instock">
+            <div className="invradio-buttons-container">
+              <label className="invradio-buttons__instock">
                 <input
-                  className="radio-buttons__input"
+                  className="invradio-buttons__input"
                   type="radio"
                   name="status"
                   value="In Stock"
+                //   checked={selectedOption === "In Stock" ? true : false}
                 />
                 In Stock
               </label>
               <label>
                 <input
-                  className="radio-buttons__input"
+                  className="invradio-buttons__input"
                   type="radio"
                   value="Out of Stock"
                   name="status"
+                //   checked={selectedOption === "Out of Stock" ? true : false}
                 />
                 Out of Stock
               </label>
             </div>
             {/* {inventoryitem && inventoryitem.status === "In Stock" && ()} */}
-            <div > 
+            {/* {selectedOption === "In Stock" && ( */}
+            <div className="invitem-details__quantity" > 
               <h3 className="invitem-details__subtitle">Quantity</h3>
               <div className="invitem-details__form">
                 <div>
@@ -196,6 +199,7 @@ function AddNewInventoryItem() {
                 </div>
               </div>
             </div>
+            {/* )} */}
   
 
             <div className="invitem-details__box">
@@ -220,7 +224,7 @@ function AddNewInventoryItem() {
         </div>
       
 
-      <div className="item-footer">
+      <div className="invitem-footer">
         <Link to="/" className="item-footer__cancel">
           <h3 className="item-footer__canceltext">Cancel</h3>
         </Link>
@@ -229,7 +233,7 @@ function AddNewInventoryItem() {
             className="item--footer--addinv item-footer__add"
             type="submit"
             >
-            Add Item
+            +  Add Item
           </button>
         
         <div className="dropdown-button-container"></div>
