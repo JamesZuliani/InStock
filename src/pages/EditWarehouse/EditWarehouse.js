@@ -9,25 +9,40 @@ const baseUrl = "http://localhost:8080";
 function EditWarehouse() {
 
     const [arrWarehouses, setArrWarehouses] = useState();
-    const {id} = useParams()
+    const [displayEditedWarehouses, setDisplayEditedWarehouses] = useState();
+    const { id } = useParams()
+    const [currentWarehouse, setCurrentWarehouse] = useState({})
 
     useEffect(() => {
         axios.get(`${baseUrl}/api/warehouses`).then(({ data }) => {
-          setArrWarehouses(data);
+            setArrWarehouses(data);
         });
-      }, []);
-
-    const [displayEditedWarehouses, setDisplayEditedWarehouses] = useState();
-    // const warehouse = arrWarehouses.find(warehouse => warehouse.id === id)
-
-    function updateWarehouse(formData,id) {
-        axios.put(`http://localhost:8080/warehouses/${id}`, formData).then(response => {
-            axios.get(`http://localhost:8080/warehouses`).then(response => {
-                setDisplayEditedWarehouses(response.data)
+        axios.get(`${baseUrl}/api/warehouses/${id}`).then(({ data }) => {
+            setCurrentWarehouse({
+                warehouse_name: data.warehouse_name,
+                address: data.address,
+                city: data.city,
+                country: data.country,
+                contact_name: data.contact_name,
+                contact_position: data.contact_position,
+                contact_phone: data.contact_phone,
+                contact_email: data.contact_email
             })
         })
-        console.log(formData);
-        console.log(id)
+
+    }, [id]);
+
+    // const warehouse = arrWarehouses.find(warehouse => warehouse.id === id)
+    if (!currentWarehouse) {
+        return <div>Loading...</div>
+    }
+    function updateWarehouse(formData, id) {
+        axios.put(`http://localhost:8080/api/warehouses/${id}`, formData).then(response => {
+            setCurrentWarehouse(response.data)
+            
+        })
+        // console.log(formData);
+        // console.log(id)
     }
 
     return (
@@ -49,37 +64,36 @@ function EditWarehouse() {
                     contact_phone: e.target.phone.value,
                     contact_email: e.target.email.value,
                 }
-                console.log(arrWarehouses)
-                console.log(id)
+                // console.log(formData)
                 updateWarehouse(formData, id)
             }}>
                 <div className="editWarehouse__form--flexdiv">
                     <div className='editWarehouse__form--warehouse'>
                         <h3>Warehouse Name</h3>
                         <label htmlFor="name">Warehouse Name
-                            <input type="text" name="name" />
+                            <input type="text" name="name" defaultValue={currentWarehouse.warehouse_name} />
                         </label>
                         <label htmlFor="street">Street address
-                            <input type="text" name="street" /></label>
+                            <input type="text" name="street" defaultValue={currentWarehouse.address}/></label>
                         <label htmlFor="city">City
-                            <input type="text" name="city" />
+                            <input type="text" name="city" defaultValue={currentWarehouse.city}/>
                         </label>
                         <label htmlFor="country">country
-                            <input type="text" name="country" />
+                            <input type="text" name="country" defaultValue={currentWarehouse.country}/>
                         </label>
                     </div>
                     <div className='editWarehouse__form--contact'>
                         <h3>Contact Details</h3>
                         <label htmlFor="contact">Contact Name
-                            <input type="text" name="contact" />
+                            <input type="text" name="contact" defaultValue={currentWarehouse.contact_name}/>
                         </label>
                         <label htmlFor="position">Position
-                            <input type="text" name="position" /></label>
+                            <input type="text" name="position" defaultValue={currentWarehouse.contact_position}/></label>
                         <label htmlFor="phone">Phone Number
-                            <input type="tel" name="phone" />
+                            <input type="tel" name="phone" defaultValue={currentWarehouse.contact_phone}/>
                         </label>
                         <label htmlFor="email">Email
-                            <input type="email" name="email" />
+                            <input type="email" name="email" defaultValue={currentWarehouse.contact_email}/>
                         </label>
                     </div>
                 </div>
