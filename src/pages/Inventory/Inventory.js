@@ -1,5 +1,5 @@
-import InventoryList from "../../components/InventoryList/InventoryList"
-import "./Inventory.scss"
+import InventoryList from "../../components/InventoryList/InventoryList";
+import "./Inventory.scss";
 import search from "../../assets/icons/search-24px.svg";
 import sort from "../../assets/icons/sort-24px.svg";
 
@@ -28,10 +28,10 @@ export default function Inventory() {
           </div>
         </div>
       </div>
-      <div className="fullscreen-labels">
+      <div className="fullscreen-labels-inv">
         <div className="inventory-label label--fullscreen">
-            <p className="inventory-label__text"> INVENTORY ITEM</p>
-            <img
+          <p className="inventory-label__text"> INVENTORY ITEM</p>
+          <img
             className="warehouse-label__icon sort-icon"
             src={sort}
             alt="sort-icon"
@@ -39,7 +39,11 @@ export default function Inventory() {
         </div>
         <div className="category-label label--fullscreen">
           <p className="category-label__text">CATEGORY</p>
-          <img className="category-label__icon sort-icon" src={sort} alt="sort-icon"></img>
+          <img
+            className="category-label__icon sort-icon"
+            src={sort}
+            alt="sort-icon"
+          ></img>
         </div>
         <div className="status-label label--fullscreen">
           <p className="status-label__text">STATUS</p>

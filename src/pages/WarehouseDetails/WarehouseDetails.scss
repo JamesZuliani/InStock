@@ -20,7 +20,16 @@
     margin: 0 auto;
     bottom: 5rem;
   }
-
+  &__loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 4rem;
+  }
+  &__no-item {
+    padding: 2rem;
+    text-align: center;
+  }
   &__title--container {
     display: flex;
     border-bottom: 1px solid #bdc5d5;

@@ -58,7 +58,10 @@ export default function WarehouseList({ warehouses, handleClassToggle }) {
             </div>
           </div>
           <div className="button-container">
-            <img onClick={() => handleClassToggle(warehouse.id)}
+            <img onClick={(e) => {
+              e.preventDefault()
+              handleClassToggle(warehouse)
+            }}
               className="action-icon"
               src={deleteIcon}
               alt="delete-icon"
@@ -111,6 +114,10 @@ export default function WarehouseList({ warehouses, handleClassToggle }) {
               className="action-icon"
               src={deleteIcon}
               alt="delete-icon"
+              onClick={(e) => {
+                e.preventDefault()
+                handleClassToggle(warehouse)
+              }}
             ></img>
             <img className="action-icon" src={editIcon} alt="edit-icon"></img>
           </div>
