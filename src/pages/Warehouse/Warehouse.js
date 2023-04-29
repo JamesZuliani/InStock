@@ -10,19 +10,29 @@ import axios from "axios";
 const baseUrl = "http://localhost:8080";
 
 function Warehouse() {
-
   const [selectedWarehouse, setSelectedWarehouse] = useState();
+  const [sortToggle, setSortToggle] = useState({
+    warehouse: "asc",
+    address: "asc",
+    contact_name: "asc",
+    contact_info: "asc",
+  });
 
   const [isActive, setIsActive] = useState(false);
+  const toggleSortOrder = (key) => {
+    setSortToggle({
+      ...sortToggle,
+      [key]: sortToggle[key] === "asc" ? "desc" : "asc",
+    });
+  };
+  const [warehouses, setWarehouses] = useState([]);
 
   function handleClassToggle(warehouse) {
     setIsActive(!isActive);
-    const body = document.querySelector('body');
-    body.classList.toggle('modal-open');
+    const body = document.querySelector("body");
+    body.classList.toggle("modal-open");
     setSelectedWarehouse(warehouse);
-}
-
-const [warehouses, setWarehouses] = useState([]);
+  }
 
   useEffect(() => {
     axios.get(`${baseUrl}/api/warehouses`).then(({ data }) => {
@@ -56,32 +66,199 @@ const [warehouses, setWarehouses] = useState([]);
       </div>
       <div className="fullscreen-labels">
         <div className="warehouse-label label--fullscreen">
-          <p className="warehouse-label__text">WAREHOUSE</p>
+          <p
+            onClick={() => {
+              toggleSortOrder === "asc"
+                ? axios
+                    .get(
+                      `${baseUrl}/api/warehouses?sort_by=warehouse_name&order_by=${sortToggle.warehouse}`
+                    )
+                    .then((res) => {
+                      setWarehouses(res.data);
+                      toggleSortOrder("warehouse");
+                    })
+                : axios
+                    .get(
+                      `${baseUrl}/api/warehouses?sort_by=warehouse_name&order_by=${sortToggle.warehouse}`
+                    )
+                    .then((res) => {
+                      setWarehouses(res.data);
+                      toggleSortOrder("warehouse");
+                    });
+            }}
+            className="warehouse-label__text"
+          >
+            WAREHOUSE
+          </p>
+
           <img
             className="warehouse-label__icon sort-icon"
             src={sort}
             alt="sort-icon"
+            onClick={() => {
+              toggleSortOrder === "asc"
+                ? axios
+                    .get(
+                      `${baseUrl}/api/warehouses?sort_by=warehouse_name&order_by=${sortToggle.warehouse}`
+                    )
+                    .then((res) => {
+                      setWarehouses(res.data);
+                      toggleSortOrder("warehouse");
+                    })
+                : axios
+                    .get(
+                      `${baseUrl}/api/warehouses?sort_by=warehouse_name&order_by=${sortToggle.warehouse}`
+                    )
+                    .then((res) => {
+                      setWarehouses(res.data);
+                      toggleSortOrder("warehouse");
+                    });
+            }}
           ></img>
         </div>
         <div className="address-label label--fullscreen">
-          <p className="address-label__text">ADDRESS</p>
+          <p
+            onClick={() => {
+              toggleSortOrder === "asc"
+                ? axios
+                    .get(
+                      `${baseUrl}/api/warehouses?sort_by=address&order_by=${sortToggle.address}`
+                    )
+                    .then((res) => {
+                      setWarehouses(res.data);
+                      toggleSortOrder("address");
+                    })
+                : axios
+                    .get(
+                      `${baseUrl}/api/warehouses?sort_by=address&order_by=${sortToggle.address}`
+                    )
+                    .then((res) => {
+                      setWarehouses(res.data);
+                      toggleSortOrder("address");
+                    });
+            }}
+            className="address-label__text"
+          >
+            ADDRESS
+          </p>
+
           <img
             className="address-label__icon sort-icon"
+            onClick={() => {
+              toggleSortOrder === "asc"
+                ? axios
+                    .get(
+                      `${baseUrl}/api/warehouses?sort_by=address&order_by=${sortToggle.address}`
+                    )
+                    .then((res) => {
+                      setWarehouses(res.data);
+                      toggleSortOrder("address");
+                    })
+                : axios
+                    .get(
+                      `${baseUrl}/api/warehouses?sort_by=address&order_by=${sortToggle.address}`
+                    )
+                    .then((res) => {
+                      setWarehouses(res.data);
+                      toggleSortOrder("address");
+                    });
+            }}
             src={sort}
             alt="sort-icon"
           ></img>
         </div>
         <div className="contact-name-label label--fullscreen">
-          <p className="contact-name-label__text">CONTACT NAME</p>
+          <p
+            onClick={() => {
+              toggleSortOrder === "asc"
+                ? axios
+                    .get(
+                      `${baseUrl}/api/warehouses?sort_by=contact_name&order_by=${sortToggle.contact_name}`
+                    )
+                    .then((res) => {
+                      setWarehouses(res.data);
+                      toggleSortOrder("contact_name");
+                    })
+                : axios
+                    .get(
+                      `${baseUrl}/api/warehouses?sort_by=contact_name&order_by=${sortToggle.contact_name}`
+                    )
+                    .then((res) => {
+                      setWarehouses(res.data);
+                      toggleSortOrder("contact_name");
+                    });
+            }}
+            className="contact-name-label__text"
+          >
+            CONTACT NAME
+          </p>
+
           <img
+            onClick={() => {
+              toggleSortOrder === "asc"
+                ? axios
+                    .get(
+                      `${baseUrl}/api/warehouses?sort_by=contact_name&order_by=${sortToggle.contact_name}`
+                    )
+                    .then((res) => {
+                      setWarehouses(res.data);
+                      toggleSortOrder("contact_name");
+                    })
+                : axios
+                    .get(
+                      `${baseUrl}/api/warehouses?sort_by=contact_name&order_by=${sortToggle.contact_name}`
+                    )
+                    .then((res) => {
+                      setWarehouses(res.data);
+                      toggleSortOrder("contact_name");
+                    });
+            }}
             className="contact-name-label__icon sort-icon"
             src={sort}
             alt="sort-icon"
           ></img>
         </div>
         <div className="contact-info-label label--fullscreen">
-          <p className="contact-info-label__text">CONTACT INFORMATION</p>
+          <p onClick={() => {
+              toggleSortOrder === "asc"
+                ? axios
+                    .get(
+                      `${baseUrl}/api/warehouses?sort_by=contact_email&order_by=${sortToggle.contact_info}`
+                    )
+                    .then((res) => {
+                      setWarehouses(res.data);
+                      toggleSortOrder("contact_info");
+                    })
+                : axios
+                    .get(
+                      `${baseUrl}/api/warehouses?sort_by=contact_email&order_by=${sortToggle.contact_info}`
+                    )
+                    .then((res) => {
+                      setWarehouses(res.data);
+                      toggleSortOrder("contact_info");
+                    });
+            }}className="contact-info-label__text">CONTACT INFORMATION</p>
+
           <img
+            onClick={() => {
+              toggleSortOrder === "asc"
+                ? axios
+                    .get(
+                      `${baseUrl}/api/warehouses?sort_by=contact_email&order_by=${sortToggle.contact_info}`
+                    )
+                    .then((res) => {
+                      setWarehouses(res.data);
+                      toggleSortOrder("contact_info");
+                    })
+                : axios
+                    .get(
+                      `${baseUrl}/api/warehouses?sort_by=contact_email&order_by=${sortToggle.contact_info}`
+                    )
+                    .then((res) => {
+                      setWarehouses(res.data);
+                      toggleSortOrder("contact_info");
+                    });
+            }}
             className="contact-info-label__icon sort-icon"
             src={sort}
             alt="sort-icon"
@@ -89,8 +266,18 @@ const [warehouses, setWarehouses] = useState([]);
         </div>
         <p className="actions-info-label label--fullscreen">ACTIONS</p>
       </div>
-      <WarehouseList warehouses={warehouses} handleClassToggle={handleClassToggle} />
-      {selectedWarehouse&&<DeleteWarehouse setWarehouses={setWarehouses} selectedWarehouse={selectedWarehouse} handleClassToggle={handleClassToggle} isActive={!isActive}/>}
+      <WarehouseList
+        warehouses={warehouses}
+        handleClassToggle={handleClassToggle}
+      />
+      {selectedWarehouse && (
+        <DeleteWarehouse
+          setWarehouses={setWarehouses}
+          selectedWarehouse={selectedWarehouse}
+          handleClassToggle={handleClassToggle}
+          isActive={!isActive}
+        />
+      )}
     </div>
   );
 }

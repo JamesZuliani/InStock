@@ -3,21 +3,20 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer";
 import Warehouse from "./pages/Warehouse/Warehouse";
-import Inventory from "./pages/Inventory";
 import EditWarehouse from "./pages/EditWarehouse/EditWarehouse";
+import Inventory from "./pages/Inventory/Inventory";
 import EditInventory from "./pages/EditInventory";
 import AddNewWarehouse from "./pages/AddNewWarehouse/AddNewWarehouse";
 import AddNewInventory from "./pages/AddNewInventory";
-import WarehouseDetails from "./pages/WarehouseDetails";
+import WarehouseDetails from "./pages/WarehouseDetails/WarehouseDetails";
 import InventoryDetails from "./pages/InventoryDetails";
-import { useEffect, useState } from "react";
-import axios from "axios";
-
+// import { useState } from "react";
+// import axios from "axios";
 
 const baseUrl = "http://localhost:8080";
 
 function App() {
-
+  
   return (
     <BrowserRouter>
       <Header />
