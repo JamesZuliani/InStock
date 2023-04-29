@@ -1,4 +1,3 @@
-
 function EditWarehouse () {
 
     return (
