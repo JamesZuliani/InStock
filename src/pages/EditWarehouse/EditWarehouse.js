@@ -12,6 +12,7 @@ function EditWarehouse() {
     const [displayEditedWarehouses, setDisplayEditedWarehouses] = useState();
     const { id } = useParams()
     const [currentWarehouse, setCurrentWarehouse] = useState({})
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios.get(`${baseUrl}/api/warehouses`).then(({ data }) => {
@@ -64,8 +65,9 @@ function EditWarehouse() {
                     contact_phone: e.target.phone.value,
                     contact_email: e.target.email.value,
                 }
-                // console.log(formData)
                 updateWarehouse(formData, id)
+                alert("Submitted successfully!!")
+                navigate("/warehouse")
             }}>
                 <div className="editWarehouse__form--flexdiv">
                     <div className='editWarehouse__form--warehouse'>
@@ -98,8 +100,8 @@ function EditWarehouse() {
                     </div>
                 </div>
                 <div className="editWarehouse__button">
-                    <button id="btn-1">Cancel</button>
-                    <button id="btn-2">Save</button>
+                    <button type="button" id="btn-1" onClick={()=>{navigate("/warehouse")}}>Cancel</button>
+                    <button type="submit" id="btn-2">Save</button>
                 </div>
             </form>
         </div>
