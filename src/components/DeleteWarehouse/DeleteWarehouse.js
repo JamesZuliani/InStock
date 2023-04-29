@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react';
 import axios from "axios";
 import "./DeleteWarehouse.scss"
 import closeIcon from "../../assets/icons/close-24px.svg";
-import { useNavigate, useParams } from 'react-router';
-import { useCallback } from 'react';
 
 
 function DeleteWarehouse({setWarehouses, selectedWarehouse, handleClassToggle, isActive }) {

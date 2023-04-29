@@ -5,10 +5,13 @@ import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import editIcon from "../../assets/icons/edit-24px.svg";
 import vectorIcon from "../../assets/icons/chevron_right-24px.svg";
 import "./WarehouseList.scss";
+import { useNavigate } from "react-router-dom";
 
 const baseUrl = "http://localhost:8080";
 
 export default function WarehouseList({ warehouses, handleClassToggle }) {
+
+  const navigate = useNavigate();
 
   return warehouses.map((warehouse, index) => {
     return (
@@ -66,7 +69,9 @@ export default function WarehouseList({ warehouses, handleClassToggle }) {
               src={deleteIcon}
               alt="delete-icon"
             ></img>
-            <img className="action-icon" src={editIcon} alt="edit-icon"></img>
+            <img className="action-icon" src={editIcon} alt="edit-icon" onClick={(e)=> {
+              e.preventDefault();
+              navigate(`/warehouse/${warehouse.id}/edit`)}}></img>
           </div>
         </div>
         {/* mobile view  */}
