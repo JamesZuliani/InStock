@@ -162,31 +162,29 @@ function EditInventory() {
               {/* description input */}
               <div className="item-details__box">
                 <h3 className="item-details__subtitle">Description</h3>
-                <div className="item-details__form item-details__forml">
-                  <div className="item-details__description">
-                    <input
-                      name="description"
-                      className="item-details__name--large"
-                      type="text"
-                      value={formik.values.description}
-                      onChange={formik.handleChange}
-                    ></input>
+                <div className="item-details__description item-details__form">
+                  <input
+                    name="description"
+                    className="item-details__name--large"
+                    type="text"
+                    value={formik.values.description}
+                    onChange={formik.handleChange}
+                  ></input>
 
-                    {/* if there is any errors, this block runs and shows the error */}
-                    {formik.touched.description && formik.errors.description ? (
-                      <div className="item-edit__error">
-                        <img
-                          src={InvalidPhoneIcon}
-                          alt="Error icon"
-                          title="Input Error"
-                          className="item-edit__error-icon"
-                        />
-                        <span className="item-edit__error-msg">
-                          {formik.errors.description}
-                        </span>
-                      </div>
-                    ) : null}
-                  </div>
+                  {/* if there is any errors, this block runs and shows the error */}
+                  {formik.touched.description && formik.errors.description ? (
+                    <div className="item-edit__error">
+                      <img
+                        src={InvalidPhoneIcon}
+                        alt="Error icon"
+                        title="Input Error"
+                        className="item-edit__error-icon"
+                      />
+                      <span className="item-edit__error-msg">
+                        {formik.errors.description}
+                      </span>
+                    </div>
+                  ) : null}
                 </div>
 
                 {/* Category input */}
