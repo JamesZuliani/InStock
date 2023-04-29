@@ -12,10 +12,16 @@ import Loader from "react-spinners/GridLoader";
 function WarehouseDetails() {
   const navigate = useNavigate();
   const { id } = useParams();
+  let sorted;
   const [warehouseDetails, setwarehouseDetails] = useState(null);
   const [inventory, setInventory] = useState(null);
-  let [loading, setLoading] = useState(true);
-
+  const [loading, setLoading] = useState(true);
+  const [sortToggle, setSortToggle] = useState({
+    item_name: "asc",
+    category: "asc",
+    status: "asc",
+    quantity: "asc",
+  });
   useEffect(() => {
     axios.get(`http://localhost:8080/api/warehouses/${id}`).then((res) => {
       const currentWarehouse = res.data;
@@ -42,6 +48,33 @@ function WarehouseDetails() {
       </div>
     );
   }
+
+  // since there was no specific endpoint for this on backEnd,
+  // we did the logic here. 
+  const toggleSortOrder = (key) => {
+    setSortToggle({
+      ...sortToggle,
+      [key]: sortToggle[key] === "asc" ? "desc" : "asc",
+    });
+  };
+  const sortItems = (key) => {
+    if (key !== "quantity") {
+      sorted = inventory.sort((a, b) =>
+        sortToggle[key] === "asc"
+          ? a[key].localeCompare(b[key])
+          : b[key].localeCompare(a[key])
+      );
+      setInventory(sorted);
+    } else {
+      sorted = inventory.sort((a, b) =>
+        sortToggle[key] === "asc" ? a[key] - b[key] : b[key] - a[key]
+      );
+      console.log(sorted);
+      setInventory(sorted);
+    }
+    toggleSortOrder(key);
+  };
+
   return (
     <>
       <section className="details">
@@ -103,33 +136,84 @@ function WarehouseDetails() {
         </div>
         <div className="fullscreen-labels-inv">
           <div className="inventory-label label--fullscreen">
-            <p className="inventory-label__text"> INVENTORY ITEM</p>
+            <p
+              className="inventory-label__text"
+              onClick={() => {
+                sortItems("category");
+                toggleSortOrder("category");
+              }}
+            >
+              {" "}
+              INVENTORY ITEM
+            </p>
+
             <img
               className="warehouse-label__icon sort-icon"
+              onClick={() => {
+                sortItems("item_name");
+                toggleSortOrder("item_name");
+              }}
               src={sort}
               alt="sort-icon"
             ></img>
           </div>
           <div className="category-label label--fullscreen">
-            <p className="category-label__text">CATEGORY</p>
+            <p
+              className="category-label__text"
+              onClick={() => {
+                sortItems("category");
+                toggleSortOrder("category");
+              }}
+            >
+              CATEGORY
+            </p>
+
             <img
               className="category-label__icon sort-icon"
+              onClick={() => {
+                sortItems("category");
+                toggleSortOrder("category");
+              }}
               src={sort}
               alt="sort-icon"
             ></img>
           </div>
           <div className="status-label label--fullscreen">
-            <p className="status-label__text">STATUS</p>
+            <p
+              className="status-label__text"
+              onClick={() => {
+                sortItems("status");
+                toggleSortOrder("status");
+              }}
+            >
+              STATUS
+            </p>
             <img
               className="status-label__icon sort-icon"
+              onClick={() => {
+                sortItems("status");
+                toggleSortOrder("status");
+              }}
               src={sort}
               alt="sort-icon"
             ></img>
           </div>
           <div className="quantity-label label--fullscreen">
-            <p className="quantity-label__text">QTY</p>
+            <p
+              className="quantity-label__text"
+              onClick={() => {
+                sortItems("quantity");
+                toggleSortOrder("quantity");
+              }}
+            >
+              QTY
+            </p>
             <img
               className="quantity-label__icon sort-icon"
+              onClick={() => {
+                sortItems("quantity");
+                toggleSortOrder("quantity");
+              }}
               src={sort}
               alt="sort-icon"
             ></img>
@@ -204,7 +288,7 @@ function WarehouseDetails() {
                         className="action-icon"
                         src={deleteIcon}
                         alt="delete-icon"
-                      ></img> 
+                      ></img>
                       <img
                         className="action-icon"
                         src={editIcon}

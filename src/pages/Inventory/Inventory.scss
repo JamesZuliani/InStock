@@ -87,6 +87,62 @@
   }
 }
 
+.inventory-label {
+  &__text {
+    transition: text-decoration-color 0.5s;
+    text-decoration: underline 0.1rem rgba(0, 0, 0, 0);
+    cursor: pointer;
+
+    &:hover {
+      text-decoration-color: $outline-color;
+    }
+  }
+}
+.category-label {
+  &__text {
+    transition: text-decoration-color 0.5s;
+    text-decoration: underline 0.1rem rgba(0, 0, 0, 0);
+    cursor: pointer;
+
+    &:hover {
+      text-decoration-color: $outline-color;
+    }
+  }
+}
+.status-label {
+  &__text {
+    transition: text-decoration-color 0.5s;
+    text-decoration: underline 0.1rem rgba(0, 0, 0, 0);
+    cursor: pointer;
+
+    &:hover {
+      text-decoration-color: $outline-color;
+    }
+  }
+}
+.quantity-label {
+  &__text {
+    transition: text-decoration-color 0.5s;
+    text-decoration: underline 0.1rem rgba(0, 0, 0, 0);
+    cursor: pointer;
+
+    &:hover {
+      text-decoration-color: $outline-color;
+    }
+  }
+}
+.location-label {
+  &__text {
+    transition: text-decoration-color 0.5s;
+    text-decoration: underline 0.1rem rgba(0, 0, 0, 0);
+    cursor: pointer;
+
+    &:hover {
+      text-decoration-color: $outline-color;
+    }
+  }
+}
+
 .add-inventory {
   background-color: #2e66e6;
   width: 90%;

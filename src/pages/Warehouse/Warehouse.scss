@@ -145,6 +145,40 @@
 //   // }
 // }
 
+.warehouse-label {
+  &__text {
+    transition: text-decoration-color 0.5s;
+    text-decoration: underline 0.1rem rgba(0, 0, 0, 0);
+    cursor: pointer;
+
+    &:hover {
+      text-decoration-color: $outline-color;
+    }
+  }
+}
+.address-label {
+  &__text {
+    transition: text-decoration-color 0.5s;
+    text-decoration: underline 0.1rem rgba(0, 0, 0, 0);
+    cursor: pointer;
+
+    &:hover {
+      text-decoration-color: $outline-color;
+    }
+  }
+}
+.contact-name-label {
+  &__text {
+    transition: text-decoration-color 0.5s;
+    text-decoration: underline 0.1rem rgba(0, 0, 0, 0);
+    cursor: pointer;
+    &:hover {
+      text-decoration-color: $outline-color;
+      
+    }
+  }
+}
+
 .label--fullscreen {
   display: none;
 
@@ -158,6 +192,15 @@
 
 .contact-info-label {
   width: 24%;
+  &__text {
+    transition: text-decoration-color 0.5s;
+    text-decoration: underline 0.1rem rgba(0, 0, 0, 0);
+    cursor: pointer;
+
+    &:hover {
+      text-decoration-color: $outline-color;
+    }
+  }
 }
 .actions-info-label {
   @include tablet {
@@ -184,4 +227,10 @@
 .sort-icon {
   width: 1rem;
   margin-left: 0.2rem;
+  border-radius: 30%;
+  cursor: pointer;
+  transition: all 0.5s;
+  &:hover {
+    background-color: $outline-color;
+  }
 }
