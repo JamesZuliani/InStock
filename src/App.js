@@ -8,14 +8,13 @@ import EditWarehouse from "./pages/EditWarehouse";
 import EditInventory from "./pages/EditInventory";
 import AddNewWarehouse from "./pages/AddNewWarehouse/AddNewWarehouse";
 import AddNewInventory from "./pages/AddNewInventory";
-import WarehouseDetails from "./pages/WarehouseDetails";
+import WarehouseDetails from "./pages/WarehouseDetails/WarehouseDetails";
 import InventoryDetails from "./pages/InventoryDetails";
-import { useEffect, useState } from "react";
-import axios from "axios";
-
+// import { useState } from "react";
+// import axios from "axios";
 
 function App() {
-
+  
   return (
     <BrowserRouter>
       <Header />

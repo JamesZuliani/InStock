@@ -47,11 +47,10 @@
     text-decoration: none;
     color: $outline-color;
     border-radius: 20px;
+    transition: text-decoration-color 0.5s;
+    text-decoration: underline 0.1rem rgba(0, 0, 0, 0);
     &:hover {
-      & > * {
-        transition: text-decoration 0.5s ease-in-out;
-        text-decoration: underline;
-      }
+      text-decoration-color: $global-color;
     }
     @include mobile {
       padding: 0.5rem 2rem;

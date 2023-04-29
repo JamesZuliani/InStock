@@ -8,15 +8,7 @@ import "./InventoryList.scss";
 
 const baseUrl = "http://localhost:8080";
 
-export default function InventoryList() {
-  const [inventory, setInventory] = useState([]);
-
-  useEffect(() => {
-    axios.get(`${baseUrl}/api/inventories`).then(({ data }) => {
-      setInventory(data);
-    });
-  }, []);
-
+export default function InventoryList({ inventory }) {
   return inventory.map((item, index) => {
     return (
       <Link

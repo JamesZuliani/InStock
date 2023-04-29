@@ -1,12 +1,14 @@
 import "./InventoryDetails.scss";
 import BackButton from "../assets/icons/arrow_back-24px.svg";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
 function InventoryDetails() {
   const { id } = useParams();
+
   const [inventoryDetails, setinventoryDetails] = useState({});
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchsingleInventory = async () => {
@@ -26,13 +28,12 @@ function InventoryDetails() {
     <div className="details">
       <div className="details__title--container">
         <div className="details__container--1">
-          <Link to={"/"}>
-            <img
-              className="details__back-button"
-              src={BackButton}
-              alt="back button arrow"
-            ></img>
-          </Link>
+          <img
+            onClick={() => navigate(-1)}
+            className="details__back-button"
+            src={BackButton}
+            alt="back button arrow"
+          ></img>
           <div className="details__title">
             <h1>{inventoryDetails.item_name || "-"}</h1>
           </div>
