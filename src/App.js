@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer";
 import Warehouse from "./pages/Warehouse/Warehouse";
-import Inventory from "./pages/Inventory";
+import Inventory from "./pages/Inventory/Inventory";
 import EditWarehouse from "./pages/EditWarehouse";
 import EditInventory from "./pages/EditInventory";
 import AddNewWarehouse from "./pages/AddNewWarehouse/AddNewWarehouse";
