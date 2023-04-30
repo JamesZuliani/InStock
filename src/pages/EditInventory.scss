@@ -155,22 +155,23 @@
 
 .item-details__description {
   width: 100%;
-}
-
-.item-details__forml {
-  height: 10rem;
+  height: 6rem;
+  display: flex;
+  align-items: flex-start;
+  padding-top: 1rem;
 }
 
 .item-details__name--large {
   width: 95%;
   outline: none;
+  resize: none;
 }
 
 .item-details__name {
   border-style: none;
   color: $primary-text-color;
   font-size: 0.8rem;
-  width: 95%;
+  width: 89%;
 
   &::placeholder {
     font-family: "Titillium Web", Times, serif;
@@ -254,7 +255,7 @@ input {
   cursor: pointer;
   transition: all 0.3s;
   &:hover {
-    background-color: #232940;
+    background-color: #eaeaea;
   }
 
   @include tablet {
