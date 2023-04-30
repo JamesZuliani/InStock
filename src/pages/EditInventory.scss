@@ -95,9 +95,12 @@
 }
 
 .item-details {
-  padding: 2rem;
-  gap: 1rem;
+  padding: 1rem 2rem 2rem 2rem;
+  gap: 1.5rem;
+  border-bottom: 1px solid $outline-color;
   @include tablet {
+    border-bottom: none;
+    padding: 2rem;
     padding: 0 2rem;
     display: flex;
     width: 50%;
@@ -105,132 +108,126 @@
     align-items: flex-start;
     border-right: 1px solid #bdc5d5;
   }
-}
-
-.item-details__availability {
-  padding: 2rem;
-  gap: 1rem;
-  @include tablet {
-    padding: 0 2rem;
-    display: flex;
-    width: 50%;
-    flex-direction: column;
-    align-items: flex-start;
+  &__availability {
+    padding: 1rem 2rem 1rem 2rem;
+    gap: 1.4rem;
+    @include tablet {
+      padding: 0 2rem;
+      display: flex;
+      width: 50%;
+      flex-direction: column;
+      align-items: flex-start;
+    }
   }
-}
-
-.item-details__subtitle {
-  color: $table-placeholder-text;
-
-  margin-top: 1rem;
-}
-
-.item-details__header {
-  margin-bottom: 2rem;
-  @include tablet {
-    margin-bottom: 0.5rem;
-  }
-}
-
-.item-details__box {
-  @include tablet {
+  &__subtitle-container {
     width: 100%;
   }
-}
-
-.item-details__form {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  border: 1px solid $outline-color;
-  border-radius: 22px;
-  margin: 0.3rem auto;
-  padding-left: 1rem;
-  height: 2.5rem;
-  padding-top: 0.3rem;
-
-  @include tablet {
+  &__subtitle {
+    color: $primary-text-color;
+    margin-top: 1rem;
+    margin-bottom: 0.4rem;
+    @include tablet {
+      margin-top: 0;
+    }
   }
-}
+  &__quantity-container {
+    margin-top: 0.5rem;
+    animation: fadeIn 0.6s ease-in-out;
+  }
+  &__quantity {
+    @extend .item-details__inputs;
+  }
 
-.item-details__description {
-  width: 100%;
-  height: 6rem;
-  display: flex;
-  align-items: flex-start;
-  padding-top: 1rem;
-}
+  &__header {
+    margin-bottom: 2rem;
+    @include tablet {
+      margin-bottom: 0.5rem;
+    }
+  }
+  &__box {
+    position: relative;
 
-.item-details__name--large {
-  width: 95%;
-  outline: none;
-  resize: none;
-}
+    @include tablet {
+      width: 100%;
+    }
+  }
+  &__inputs {
+    margin-top: 0.22rem;
+    height: 2.25rem;
+    padding: 1rem;
+    width: 100%;
+    border-radius: 20px;
+    border: 1px solid $outline-color;
+    font-family: "Titillium Web", Times, serif;
+    font-size: 0.8rem;
+    transition: all 0.3s;
+    &--invalid {
+      border-color: #c94515;
+    }
+    &:hover {
+      border-color: $primary-cta-color;
+    }
 
-.item-details__name {
-  border-style: none;
-  color: $primary-text-color;
-  font-size: 0.8rem;
-  width: 89%;
+    &::placeholder {
+      color: $table-placeholder-text;
+      font-size: 0.8125rem;
+    }
+    &:focus {
+      outline: none;
+      border-color: $primary-cta-color;
+    }
+  }
+  &__description {
+    @extend .item-details__inputs;
+    width: 100%;
+    resize: none;
+    min-height: 7.5rem;
+    padding: 0.5rem 1rem;
+    overflow: visible;
+  }
 
+  &__name {
+    @extend .item-details__inputs;
+    font-size: 0.8rem;
+    padding: 0 1rem;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("../assets/icons/arrow_drop_down-24px.svg");
+    background-position: right center;
+    background-repeat: no-repeat;
+    background-position: calc(100% - 20px) center;
+  }
+  &::-ms-expand {
+    display: none;
+  }
   &::placeholder {
     font-family: "Titillium Web", Times, serif;
-  }
-
-  &:focus {
-    outline: none;
   }
 
   @include tablet {
     margin-right: 0;
   }
 }
-
-// .item-details--hidden {
-//   display: none;
-// }
-
-.radio-buttons__instock {
-  margin-right: 4rem;
-}
-
-.radio-buttons__input {
-  margin-right: 1rem;
-}
-
-input {
-  border: none;
-}
-
-.edit__comment:focus-visible {
-  outline: none;
-}
-
-.item-footer__save {
-  background-color: $primary-cta-color;
-  background-color: #2e66e5;
-  border-radius: 20px;
-  width: 11.7rem;
-  padding: 0.6rem;
-  text-decoration: none;
-  border: none;
-
-  cursor: pointer;
-  transition: all 0.3s;
-  &:hover {
-    background-color: #232940;
-  }
-
-  @include tablet {
-    width: 4rem;
-    padding: 0.7rem;
+.radio-buttons {
+  display: flex;
+  align-items: center;
+  &__instock,
+  &__outstock {
     display: flex;
-    border-radius: 20px;
-    background-position: 20%;
-    margin-top: 0.5rem;
-    margin-right: 2rem;
+    align-items: center;
+    margin-right: 4rem;
+    width: max-content;
+  }
+  &__input {
+    margin-right: 0.8rem;
+  }
+  &--inactive {
+    color: $table-placeholder-text;
   }
 }
+
+
 
 .item--footer--savetext {
   text-align: center;
@@ -243,47 +240,46 @@ input {
   }
 }
 
-.item-footer__cancel {
-  border: 1px solid $outline-color;
-  background-color: $primary-cta-color;
-  background-color: $global-color;
-  border-radius: 20px;
-  width: 11.7rem;
-  padding: 0.6rem;
-  text-decoration: none;
-
-  cursor: pointer;
-  transition: all 0.3s;
-  &:hover {
-    background-color: #eaeaea;
-  }
-
-  @include tablet {
-    padding: 0.7rem;
-    display: flex;
-    border-radius: 20px;
-    margin-top: 0.5rem;
-    width: 4rem;
-    margin-right: 2rem;
-  }
-}
-
-.item-footer__canceltext {
-  text-align: center;
-  color: $table-placeholder-text;
-}
-
 .item-footer {
   display: flex;
   justify-content: space-around;
   background-color: $page-background;
-  padding: 1rem;
+  padding: 1rem 2rem;
+  gap: 1rem;
+  
+  &__form-button {
+    flex: 1;
+    padding: 0.5rem 0;
+    border-radius: 20px;
+    border: none;
+    font-size: 0.8125rem;
+    font-family: "Titillium Web", Times, serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
 
+    &--primary {
+      background-color: $primary-cta-color;
+      color: $global-color;
+      border: none;
+      &:hover {
+        background-color: #232940;
+      }
+    }
+    &--secondary {
+      border: 1px solid $outline-color;
+      background-color: transparent;
+      color: $table-placeholder-text;
+      &:hover {
+        background-color: #eaeaea;
+      }
+    }
+    @include tablet {
+      flex: initial;
+      padding: 0.5rem 1rem;
+    }
+  }
   @include tablet {
     justify-content: flex-end;
   }
-}
-
-.item-details__quantity {
-  margin-top: 1rem;
 }
