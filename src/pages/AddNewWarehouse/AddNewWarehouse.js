@@ -367,7 +367,7 @@ function AddNewWarehouse() {
           </div>
           <div className="new-warehouse__button-wrapper">
             <button
-              onClick={() => (window.location.pathname = "/warehouse")}
+              onClick={() => (navigate(-1))}
               className="new-warehouse__form-button new-warehouse__form-button--secondary"
             >
               Cancel
