@@ -18,7 +18,7 @@ function WarehouseDetails() {
   // other state variables
   // const [warehouseDetails, setwarehouseDetails] = useState(null);
   const [inventory, setInventory] = useState(null);
-  const [currentWarehouse, setCurrentWarehouse] = useState(null)
+  const [currentWarehouse, setCurrentWarehouse] = useState(null);
   const [loading, setLoading] = useState(true);
   // sort state variables
   const [sortToggle, setSortToggle] = useState({
@@ -30,7 +30,7 @@ function WarehouseDetails() {
 
   //deleting inventory item starts here
   const [modelActive, setModelActive] = useState(false);
-  const [selectedInventory, setSelectedInventory] = useState()
+  const [selectedInventory, setSelectedInventory] = useState();
 
   function handleModel(inventory) {
     setModelActive(!modelActive);
@@ -39,26 +39,27 @@ function WarehouseDetails() {
     setSelectedInventory(inventory);
   }
 
-
   //delete inventory ends here
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/api/warehouses/${id}`).then((res) => {
-      setCurrentWarehouse(res.data)
-      return res.data
-    }).then((warehouse) => {
-      axios.get(`http://localhost:8080/api/inventories`).then((res) => {
-        console.log(warehouse)
-        const filteredItems = res.data.filter((item) => {
-          return item.warehouse_name === warehouse.warehouse_name;
-        });
-        
-        setInventory(filteredItems);
-        // setwarehouseDetails(currentWarehouse);
-        setLoading(false);
+    axios
+      .get(`http://localhost:8080/api/warehouses/${id}`)
+      .then((res) => {
+        setCurrentWarehouse(res.data);
+        return res.data;
       })
+      .then((warehouse) => {
+        axios.get(`http://localhost:8080/api/inventories`).then((res) => {
+          console.log(warehouse);
+          const filteredItems = res.data.filter((item) => {
+            return item.warehouse_name === warehouse.warehouse_name;
+          });
 
-    });
+          setInventory(filteredItems);
+          // setwarehouseDetails(currentWarehouse);
+          setLoading(false);
+        });
+      });
   }, [id]);
 
   if (loading || !currentWarehouse || !inventory) {
@@ -75,7 +76,7 @@ function WarehouseDetails() {
   }
 
   // since there was no specific endpoint for this on backEnd,
-  // we did the logic here. 
+  // we did the logic here.
   const toggleSortOrder = (key) => {
     setSortToggle({
       ...sortToggle,
@@ -102,8 +103,8 @@ function WarehouseDetails() {
   return (
     <>
       <section className="details">
-        <div className="details__title--container">
-          <div className="details__container--1">
+        <div className="details__title-container">
+          <div className="details__container">
             <img
               onClick={() => navigate(-1)}
               className="details__back-button"
@@ -115,13 +116,13 @@ function WarehouseDetails() {
               <h1>{currentWarehouse.warehouse_name}</h1>
             </div>
           </div>
-          <Link to={`/warehouse/${id}/edit`} className="details__button--edit">
-            <h3 className="details__button--text">Edit</h3>
+          <Link to={`/warehouse/${id}/edit`} className="details__button-edit">
+            <h3 className="details__button-text">Edit</h3>
           </Link>
         </div>
 
         <div className="details__section">
-          <div className="details__address--container">
+          <div className="details__address-container">
             <h3 className="details__subtitle">WAREHOUSE ADDRESS:</h3>
             <p className="details__subtitle-text">
               {`${currentWarehouse.address}, `}
@@ -129,8 +130,8 @@ function WarehouseDetails() {
               {currentWarehouse.country}
             </p>
           </div>
-          <div className="details__subtitle--container">
-            <div className="details__subtitle--sub-container">
+          <div className="details__subtitle-container">
+            <div>
               <h3 className="details__subtitle">CONTACT NAME:</h3>
               <p>
                 {currentWarehouse.contact_name
@@ -143,7 +144,7 @@ function WarehouseDetails() {
                   : "-"}
               </p>
             </div>
-            <div className="details__contact--container">
+            <div>
               <h3 className="details__subtitle">CONTACT INFORMATION:</h3>
               <p>
                 {currentWarehouse.contact_phone
@@ -289,7 +290,7 @@ function WarehouseDetails() {
                           <p
                             className={
                               "status-container__title" &&
-                                item.status === "In Stock"
+                              item.status === "In Stock"
                                 ? "status-container__title--instock"
                                 : "status-container__title--outstock"
                             }
@@ -310,9 +311,9 @@ function WarehouseDetails() {
                     <div className="button-container">
                       <img
                         onClick={(e) => {
-                          e.preventDefault()
-                          handleModel(item.id)
-                          setSelectedInventory(item)
+                          e.preventDefault();
+                          handleModel(item.id);
+                          setSelectedInventory(item);
                         }}
                         className="action-icon"
                         src={deleteIcon}
@@ -356,7 +357,7 @@ function WarehouseDetails() {
                       <p
                         className={
                           "status-container__title" &&
-                            item.status === "In Stock"
+                          item.status === "In Stock"
                             ? "status-container__title--instock"
                             : "status-container__title--outstock"
                         }
@@ -374,9 +375,9 @@ function WarehouseDetails() {
                     <div className="button-container">
                       <img
                         onClick={(e) => {
-                          e.preventDefault()
-                          handleModel(item.id)
-                          setSelectedInventory(item)
+                          e.preventDefault();
+                          handleModel(item.id);
+                          setSelectedInventory(item);
                         }}
                         className="action-icon"
                         src={deleteIcon}
@@ -399,7 +400,8 @@ function WarehouseDetails() {
         selectedInventory={selectedInventory}
         handleModel={handleModel}
         modelActive={!modelActive}
-        currentWarehouse={currentWarehouse} />
+        currentWarehouse={currentWarehouse}
+      />
     </>
   );
 }

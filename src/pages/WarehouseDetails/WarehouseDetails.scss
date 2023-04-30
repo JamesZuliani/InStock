@@ -30,7 +30,7 @@
     padding: 2rem;
     text-align: center;
   }
-  &__title--container {
+  &__title-container {
     display: flex;
     border-bottom: 1px solid #bdc5d5;
     width: 100%;
@@ -44,7 +44,7 @@
     }
   }
 
-  &__container--1 {
+  &__container {
     display: flex;
     align-items: baseline;
   }
@@ -81,7 +81,7 @@
     line-height: 1rem;
   }
 
-  &__subtitle--container {
+  &__subtitle-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -97,7 +97,7 @@
     }
   }
 
-  &__address--container {
+  &__address-container {
     padding-bottom: 1rem;
     @include tablet {
       flex: 1;
@@ -105,15 +105,7 @@
     }
   }
 
-  &__edit--hidden {
-    display: none;
-    @include tablet {
-      color: $global-color;
-      display: block;
-    }
-  }
-
-  &__button--edit {
+  &__button-edit {
     background-color: $primary-cta-color;
     background-image: url("../../assets/icons/editdetails-24px.svg");
     background-color: #2e66e5;
@@ -139,7 +131,7 @@
     }
   }
 
-  &__button--text {
+  &__button-text {
     display: none;
 
     @include tablet {
