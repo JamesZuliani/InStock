@@ -227,26 +227,13 @@
   }
 }
 
-
-
-.item--footer--savetext {
-  text-align: center;
-  color: $global-color;
-
-  @include tablet {
-    display: flex;
-    margin-left: 0.5rem;
-    color: $global-color;
-  }
-}
-
 .item-footer {
   display: flex;
   justify-content: space-around;
   background-color: $page-background;
   padding: 1rem 2rem;
   gap: 1rem;
-  
+
   &__form-button {
     flex: 1;
     padding: 0.5rem 0;
