@@ -68,7 +68,7 @@
   }
 }
 
-.location-container {
+.location-wrapper {
   width: 10rem;
 
   @include tablet {
@@ -137,8 +137,12 @@
   }
 }
 
+.information-container {
+  padding: 0.8rem 0;
+}
+
 .name-container {
-  padding: 0.8rem;
+  padding: 0.8rem 0;
 
   @include tablet {
     width: 20%;

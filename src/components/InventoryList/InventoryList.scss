@@ -77,7 +77,7 @@
   }
 }
 
-.information-container {
+.status-wrapper {
   width: 12rem;
 
   @include tablet {
@@ -86,7 +86,7 @@
   }
 }
 
-.name-container {
+.name-wrapper {
   padding: 0.8rem;
 
   @include tablet {
@@ -180,7 +180,7 @@
   }
 }
 
-.button-container {
+.button-container--inventory {
   width: 80%;
   margin: 0 auto;
   padding: 0 0.8rem;
@@ -194,7 +194,7 @@
   }
 }
 
-.action-icon {
+.action-icon--inventory {
   border-radius: 22px;
   transition: all 0.3s;
   padding: 0.2rem;
