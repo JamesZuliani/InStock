@@ -89,10 +89,11 @@ body {
             padding-bottom: 3rem;
 
             @include tablet {
-                padding-bottom: 0;
                 align-self: flex-end;
                 justify-content: flex-end;
                 gap: 1.7rem;
+            padding-bottom: 0;
+
             }
 
             button {
@@ -134,6 +135,6 @@ body {
     display: none;
 }
 
-.modal-open {
+.modal-on {
     overflow: hidden;
   }

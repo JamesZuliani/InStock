@@ -8,7 +8,7 @@ import "./InventoryList.scss";
 
 const baseUrl = "http://localhost:8080";
 
-export default function InventoryList({ inventory }) {
+export default function InventoryList({ inventory, handleModel }) {
   return inventory.map((item, index) => {
     return (
       <Link
@@ -58,6 +58,10 @@ export default function InventoryList({ inventory }) {
           </div>
           <div className="button-container">
             <img
+             onClick={(e) => {
+              e.preventDefault()
+              handleModel(item)
+            }}
               className="action-icon"
               src={deleteIcon}
               alt="delete-icon"
@@ -107,6 +111,10 @@ export default function InventoryList({ inventory }) {
           </div>
           <div className="button-container">
             <img
+             onClick={(e) => {
+              e.preventDefault()
+              handleModel(item)
+            }}
               className="action-icon"
               src={deleteIcon}
               alt="delete-icon"

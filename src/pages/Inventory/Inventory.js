@@ -4,10 +4,12 @@ import search from "../../assets/icons/search-24px.svg";
 import sort from "../../assets/icons/sort-24px.svg";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import DeleteInventory from "../../components/DeleteInventory/DeleteInventory";
 
 export default function Inventory() {
   const baseUrl = "http://localhost:8080";
-
+  const [modelActive, setModelActive] = useState(false);
+  const [selectedInventory, setSelectedInventory] = useState(null);
   const [inventory, setInventory] = useState(null);
   const [sortToggle, setSortToggle] = useState({
     inventory_item: "asc",
@@ -16,17 +18,29 @@ export default function Inventory() {
     quantity: "asc",
     warehouse: "asc",
   });
+  
   useEffect(() => {
     axios.get(`${baseUrl}/api/inventories`).then(({ data }) => {
       setInventory(data);
     });
   }, []);
+
+
   const toggleSortOrder = (key) => {
     setSortToggle({
       ...sortToggle,
       [key]: sortToggle[key] === "asc" ? "desc" : "asc",
     });
   };
+
+  //delete inventory starts here
+  function handleModel(inventory) {
+    setModelActive(!modelActive);
+    const body = document.querySelector("body");
+    body.classList.toggle("modal-on");
+    setSelectedInventory(inventory);
+  }
+  //delete inventory ends here
   if (!inventory) {
     return <div>Loading</div>;
   }
@@ -60,21 +74,21 @@ export default function Inventory() {
             onClick={() => {
               toggleSortOrder === "asc"
                 ? axios
-                    .get(
-                      `${baseUrl}/api/inventories?sort_by=item_name&order_by=${sortToggle.inventory_item}`
-                    )
-                    .then((res) => {
-                      setInventory(res.data);
-                      toggleSortOrder("inventory_item");
-                    })
+                  .get(
+                    `${baseUrl}/api/inventories?sort_by=item_name&order_by=${sortToggle.inventory_item}`
+                  )
+                  .then((res) => {
+                    setInventory(res.data);
+                    toggleSortOrder("inventory_item");
+                  })
                 : axios
-                    .get(
-                      `${baseUrl}/api/inventories?sort_by=item_name&order_by=${sortToggle.inventory_item}`
-                    )
-                    .then((res) => {
-                      setInventory(res.data);
-                      toggleSortOrder("inventory_item");
-                    });
+                  .get(
+                    `${baseUrl}/api/inventories?sort_by=item_name&order_by=${sortToggle.inventory_item}`
+                  )
+                  .then((res) => {
+                    setInventory(res.data);
+                    toggleSortOrder("inventory_item");
+                  });
             }}
             className="inventory-label__text"
           >
@@ -86,21 +100,21 @@ export default function Inventory() {
             onClick={() => {
               toggleSortOrder === "asc"
                 ? axios
-                    .get(
-                      `${baseUrl}/api/inventories?sort_by=item_name&order_by=${sortToggle.inventory_item}`
-                    )
-                    .then((res) => {
-                      setInventory(res.data);
-                      toggleSortOrder("inventory_item");
-                    })
+                  .get(
+                    `${baseUrl}/api/inventories?sort_by=item_name&order_by=${sortToggle.inventory_item}`
+                  )
+                  .then((res) => {
+                    setInventory(res.data);
+                    toggleSortOrder("inventory_item");
+                  })
                 : axios
-                    .get(
-                      `${baseUrl}/api/inventories?sort_by=item_name&order_by=${sortToggle.inventory_item}`
-                    )
-                    .then((res) => {
-                      setInventory(res.data);
-                      toggleSortOrder("inventory_item");
-                    });
+                  .get(
+                    `${baseUrl}/api/inventories?sort_by=item_name&order_by=${sortToggle.inventory_item}`
+                  )
+                  .then((res) => {
+                    setInventory(res.data);
+                    toggleSortOrder("inventory_item");
+                  });
             }}
             src={sort}
             alt="sort-icon"
@@ -111,21 +125,21 @@ export default function Inventory() {
             onClick={() => {
               toggleSortOrder === "asc"
                 ? axios
-                    .get(
-                      `${baseUrl}/api/inventories?sort_by=category&order_by=${sortToggle.category}`
-                    )
-                    .then((res) => {
-                      setInventory(res.data);
-                      toggleSortOrder("category");
-                    })
+                  .get(
+                    `${baseUrl}/api/inventories?sort_by=category&order_by=${sortToggle.category}`
+                  )
+                  .then((res) => {
+                    setInventory(res.data);
+                    toggleSortOrder("category");
+                  })
                 : axios
-                    .get(
-                      `${baseUrl}/api/inventories?sort_by=category&order_by=${sortToggle.category}`
-                    )
-                    .then((res) => {
-                      setInventory(res.data);
-                      toggleSortOrder("category");
-                    });
+                  .get(
+                    `${baseUrl}/api/inventories?sort_by=category&order_by=${sortToggle.category}`
+                  )
+                  .then((res) => {
+                    setInventory(res.data);
+                    toggleSortOrder("category");
+                  });
             }}
             className="category-label__text"
           >
@@ -136,21 +150,21 @@ export default function Inventory() {
             onClick={() => {
               toggleSortOrder === "asc"
                 ? axios
-                    .get(
-                      `${baseUrl}/api/inventories?sort_by=category&order_by=${sortToggle.category}`
-                    )
-                    .then((res) => {
-                      setInventory(res.data);
-                      toggleSortOrder("category");
-                    })
+                  .get(
+                    `${baseUrl}/api/inventories?sort_by=category&order_by=${sortToggle.category}`
+                  )
+                  .then((res) => {
+                    setInventory(res.data);
+                    toggleSortOrder("category");
+                  })
                 : axios
-                    .get(
-                      `${baseUrl}/api/inventories?sort_by=category&order_by=${sortToggle.category}`
-                    )
-                    .then((res) => {
-                      setInventory(res.data);
-                      toggleSortOrder("category");
-                    });
+                  .get(
+                    `${baseUrl}/api/inventories?sort_by=category&order_by=${sortToggle.category}`
+                  )
+                  .then((res) => {
+                    setInventory(res.data);
+                    toggleSortOrder("category");
+                  });
             }}
             src={sort}
             alt="sort-icon"
@@ -162,21 +176,21 @@ export default function Inventory() {
             onClick={() => {
               toggleSortOrder === "asc"
                 ? axios
-                    .get(
-                      `${baseUrl}/api/inventories?sort_by=status&order_by=${sortToggle.status}`
-                    )
-                    .then((res) => {
-                      setInventory(res.data);
-                      toggleSortOrder("status");
-                    })
+                  .get(
+                    `${baseUrl}/api/inventories?sort_by=status&order_by=${sortToggle.status}`
+                  )
+                  .then((res) => {
+                    setInventory(res.data);
+                    toggleSortOrder("status");
+                  })
                 : axios
-                    .get(
-                      `${baseUrl}/api/inventories?sort_by=status&order_by=${sortToggle.status}`
-                    )
-                    .then((res) => {
-                      setInventory(res.data);
-                      toggleSortOrder("status");
-                    });
+                  .get(
+                    `${baseUrl}/api/inventories?sort_by=status&order_by=${sortToggle.status}`
+                  )
+                  .then((res) => {
+                    setInventory(res.data);
+                    toggleSortOrder("status");
+                  });
             }}
           >
             STATUS
@@ -185,21 +199,21 @@ export default function Inventory() {
             onClick={() => {
               toggleSortOrder === "asc"
                 ? axios
-                    .get(
-                      `${baseUrl}/api/inventories?sort_by=status&order_by=${sortToggle.status}`
-                    )
-                    .then((res) => {
-                      setInventory(res.data);
-                      toggleSortOrder("status");
-                    })
+                  .get(
+                    `${baseUrl}/api/inventories?sort_by=status&order_by=${sortToggle.status}`
+                  )
+                  .then((res) => {
+                    setInventory(res.data);
+                    toggleSortOrder("status");
+                  })
                 : axios
-                    .get(
-                      `${baseUrl}/api/inventories?sort_by=status&order_by=${sortToggle.status}`
-                    )
-                    .then((res) => {
-                      setInventory(res.data);
-                      toggleSortOrder("status");
-                    });
+                  .get(
+                    `${baseUrl}/api/inventories?sort_by=status&order_by=${sortToggle.status}`
+                  )
+                  .then((res) => {
+                    setInventory(res.data);
+                    toggleSortOrder("status");
+                  });
             }}
             className="status-label__icon sort-icon"
             src={sort}
@@ -212,21 +226,21 @@ export default function Inventory() {
             onClick={() => {
               toggleSortOrder === "asc"
                 ? axios
-                    .get(
-                      `${baseUrl}/api/inventories?sort_by=quantity&order_by=${sortToggle.quantity}`
-                    )
-                    .then((res) => {
-                      setInventory(res.data);
-                      toggleSortOrder("quantity");
-                    })
+                  .get(
+                    `${baseUrl}/api/inventories?sort_by=quantity&order_by=${sortToggle.quantity}`
+                  )
+                  .then((res) => {
+                    setInventory(res.data);
+                    toggleSortOrder("quantity");
+                  })
                 : axios
-                    .get(
-                      `${baseUrl}/api/inventories?sort_by=quantity&order_by=${sortToggle.quantity}`
-                    )
-                    .then((res) => {
-                      setInventory(res.data);
-                      toggleSortOrder("quantity");
-                    });
+                  .get(
+                    `${baseUrl}/api/inventories?sort_by=quantity&order_by=${sortToggle.quantity}`
+                  )
+                  .then((res) => {
+                    setInventory(res.data);
+                    toggleSortOrder("quantity");
+                  });
             }}
           >
             QTY
@@ -236,21 +250,21 @@ export default function Inventory() {
             onClick={() => {
               toggleSortOrder === "asc"
                 ? axios
-                    .get(
-                      `${baseUrl}/api/inventories?sort_by=quantity&order_by=${sortToggle.quantity}`
-                    )
-                    .then((res) => {
-                      setInventory(res.data);
-                      toggleSortOrder("quantity");
-                    })
+                  .get(
+                    `${baseUrl}/api/inventories?sort_by=quantity&order_by=${sortToggle.quantity}`
+                  )
+                  .then((res) => {
+                    setInventory(res.data);
+                    toggleSortOrder("quantity");
+                  })
                 : axios
-                    .get(
-                      `${baseUrl}/api/inventories?sort_by=quantity&order_by=${sortToggle.quantity}`
-                    )
-                    .then((res) => {
-                      setInventory(res.data);
-                      toggleSortOrder("quantity");
-                    });
+                  .get(
+                    `${baseUrl}/api/inventories?sort_by=quantity&order_by=${sortToggle.quantity}`
+                  )
+                  .then((res) => {
+                    setInventory(res.data);
+                    toggleSortOrder("quantity");
+                  });
             }}
             src={sort}
             alt="sort-icon"
@@ -262,21 +276,21 @@ export default function Inventory() {
             onClick={() => {
               toggleSortOrder === "asc"
                 ? axios
-                    .get(
-                      `${baseUrl}/api/inventories?sort_by=warehouse_name&order_by=${sortToggle.warehouse_name}`
-                    )
-                    .then((res) => {
-                      setInventory(res.data);
-                      toggleSortOrder("warehouse_name");
-                    })
+                  .get(
+                    `${baseUrl}/api/inventories?sort_by=warehouse_name&order_by=${sortToggle.warehouse_name}`
+                  )
+                  .then((res) => {
+                    setInventory(res.data);
+                    toggleSortOrder("warehouse_name");
+                  })
                 : axios
-                    .get(
-                      `${baseUrl}/api/inventories?sort_by=warehouse_name&order_by=${sortToggle.warehouse_name}`
-                    )
-                    .then((res) => {
-                      setInventory(res.data);
-                      toggleSortOrder("warehouse_name");
-                    });
+                  .get(
+                    `${baseUrl}/api/inventories?sort_by=warehouse_name&order_by=${sortToggle.warehouse_name}`
+                  )
+                  .then((res) => {
+                    setInventory(res.data);
+                    toggleSortOrder("warehouse_name");
+                  });
             }}
           >
             WAREHOUSE
@@ -286,21 +300,21 @@ export default function Inventory() {
             onClick={() => {
               toggleSortOrder === "asc"
                 ? axios
-                    .get(
-                      `${baseUrl}/api/inventories?sort_by=warehouse_name&order_by=${sortToggle.warehouse_name}`
-                    )
-                    .then((res) => {
-                      setInventory(res.data);
-                      toggleSortOrder("warehouse_name");
-                    })
+                  .get(
+                    `${baseUrl}/api/inventories?sort_by=warehouse_name&order_by=${sortToggle.warehouse_name}`
+                  )
+                  .then((res) => {
+                    setInventory(res.data);
+                    toggleSortOrder("warehouse_name");
+                  })
                 : axios
-                    .get(
-                      `${baseUrl}/api/inventories?sort_by=warehouse_name&order_by=${sortToggle.warehouse_name}`
-                    )
-                    .then((res) => {
-                      setInventory(res.data);
-                      toggleSortOrder("warehouse_name");
-                    });
+                  .get(
+                    `${baseUrl}/api/inventories?sort_by=warehouse_name&order_by=${sortToggle.warehouse_name}`
+                  )
+                  .then((res) => {
+                    setInventory(res.data);
+                    toggleSortOrder("warehouse_name");
+                  });
             }}
             src={sort}
             alt="sort-icon"
@@ -308,7 +322,12 @@ export default function Inventory() {
         </div>
         <p className="actions-info-label label--fullscreen">ACTIONS</p>
       </div>
-      <InventoryList inventory={inventory} />
-    </div>
+      <InventoryList inventory={inventory} handleModel={handleModel} />
+      <DeleteInventory
+        setInventory={setInventory}
+        selectedInventory={selectedInventory}
+        handleModel={handleModel}
+        modelActive={!modelActive} />
+    </div >
   );
 }
