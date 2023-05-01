@@ -123,7 +123,7 @@ function EditWarehouse() {
             alt="back button arrow"
           />
         </Link>
-        <h2>Edit Warehouse</h2>
+        <h1>Edit Warehouse</h1>
       </div>
       <form onSubmit={formik.handleSubmit}>
         <div className="editWarehouse__form-wrapper">
@@ -384,7 +384,7 @@ function EditWarehouse() {
             type="submit"
             className="editWarehouse__form-button editWarehouse__form-button--primary"
           >
-            + Add Warehouse
+            Save
           </button>
         </div>
       </form>
