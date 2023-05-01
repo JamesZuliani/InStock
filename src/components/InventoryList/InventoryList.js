@@ -45,7 +45,7 @@ export default function InventoryList({ inventory, handleModel }) {
                 </p>
               </div>
               <div className="quantity-container">
-                <h5 className="quantity-container__label label">QTY</h5>
+                <h5 className="quantity-container__label label">QUANTITY</h5>
                 <p className="quantity-container__amount">{item.quantity}</p>
               </div>
               <div className="location-container">

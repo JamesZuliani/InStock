@@ -5,11 +5,11 @@ import Footer from "./components/Footer";
 import Warehouse from "./pages/Warehouse/Warehouse";
 import EditWarehouse from "./pages/EditWarehouse/EditWarehouse";
 import Inventory from "./pages/Inventory/Inventory";
-import EditInventory from "./pages/EditInventory";
+import EditInventory from "./pages/EditInventory/EditInventory";
 import AddNewWarehouse from "./pages/AddNewWarehouse/AddNewWarehouse";
-import AddNewInventory from "./pages/AddNewInventory";
+import AddNewInventory from "./pages/AddNewInventory/AddNewInventory";
 import WarehouseDetails from "./pages/WarehouseDetails/WarehouseDetails";
-import InventoryDetails from "./pages/InventoryDetails";
+import InventoryDetails from "./pages/InventoryDetails/InventoryDetails";
 // import { useState } from "react";
 // import axios from "axios";
 
