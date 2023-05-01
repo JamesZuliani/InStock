@@ -3,14 +3,19 @@ import "./Inventory.scss";
 import search from "../../assets/icons/search-24px.svg";
 import sort from "../../assets/icons/sort-24px.svg";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import DeleteInventory from "../../components/DeleteInventory/DeleteInventory";
+import Loader from "react-spinners/GridLoader";
 
 export default function Inventory() {
+  const navigate = useNavigate()
   const baseUrl = "http://localhost:8080";
   const [modelActive, setModelActive] = useState(false);
   const [selectedInventory, setSelectedInventory] = useState(null);
   const [inventory, setInventory] = useState(null);
+  const [loading, setLoading] = useState(true);
+
   const [sortToggle, setSortToggle] = useState({
     inventory_item: "asc",
     category: "asc",
@@ -22,6 +27,7 @@ export default function Inventory() {
   useEffect(() => {
     axios.get(`${baseUrl}/api/inventories`).then(({ data }) => {
       setInventory(data);
+      setLoading(false)
     });
   }, []);
 
@@ -41,8 +47,17 @@ export default function Inventory() {
     setSelectedInventory(inventory);
   }
   //delete inventory ends here
-  if (!inventory) {
-    return <div>Loading</div>;
+  if (loading || !inventory) {
+    return (
+      <div className="details__loading-container">
+        <Loader
+          color="#2e66e5"
+          size={10}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      </div>
+    );
   }
   return (
     <div className="inventory-list-page">
@@ -63,8 +78,8 @@ export default function Inventory() {
               alt="search-Icon"
             ></img>
           </div>
-          <div className="add-inventory">
-            <p className="add-inventory__text"> + Add New Item</p>
+          <div onClick={() => navigate('/inventory/new')} className="add-inventory">
+            <p  className="add-inventory__text"> + Add New Item</p>
           </div>
         </div>
       </div>
@@ -243,7 +258,7 @@ export default function Inventory() {
                   });
             }}
           >
-            QTY
+            QUANTITY
           </p>
           <img
             className="quantity-label__icon sort-icon"

@@ -50,7 +50,6 @@ function WarehouseDetails() {
       })
       .then((warehouse) => {
         axios.get(`http://localhost:8080/api/inventories`).then((res) => {
-          console.log(warehouse);
           const filteredItems = res.data.filter((item) => {
             return item.warehouse_name === warehouse.warehouse_name;
           });
