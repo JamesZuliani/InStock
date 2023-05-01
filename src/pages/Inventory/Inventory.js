@@ -23,7 +23,7 @@ export default function Inventory() {
     axios.get(`${baseUrl}/api/inventories`).then(({ data }) => {
       setInventory(data);
     });
-  }, []);
+  },[]);
 
 
   const toggleSortOrder = (key) => {

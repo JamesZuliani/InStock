@@ -71,7 +71,7 @@ function EditWarehouse() {
             console.log(values)
             // Handle form submission here
             axios.put(`http://localhost:8080/api/warehouses/${id}`, values).then(response => {
-            navigate('/warehouse')
+                navigate('/warehouse')
             })
         },
     });
@@ -97,8 +97,10 @@ function EditWarehouse() {
     return (
         <div className="editWarehouse">
             <div className="editWarehouse__topflex">
-                <img src={backArrowIcon} alt="arrowIcon" onClick={()=>{navigate(-1)}}/>
-                <h2>Edit Warehouse</h2>
+                <div className="editWarehouse__topflex--inner">
+                    <img src={backArrowIcon} alt="arrowIcon" onClick={() => { navigate(-1) }} />
+                    <h2>Edit Warehouse</h2>
+                </div>
             </div>
             <form className="editWarehouse__form" onSubmit={formik.handleSubmit}>
                 <div className="editWarehouse__form--flexdiv">

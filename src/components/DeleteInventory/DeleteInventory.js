@@ -29,22 +29,28 @@ function DeleteInventory({ setInventory, selectedInventory, handleModel, modelAc
         })
     }
 
+    console.log(selectedInventory)
 
-    return (
-        <div className={!modelActive ? 'container' : 'deleting'}>
+    if (selectedInventory) {
+        return (<div className={!modelActive ? 'container' : 'deleting'}>
             <div className="flex-container">
                 <img onClick={handleModel} src={closeIcon} alt='ximg' />
                 <div className="topflex">
-                    <h2>Delete inventory item?</h2>
-                    <p>Please confirm that you'd like to delete from the inventory list. You won't be able to undo this action.</p>
+                    <h2>Delete {selectedInventory.item_name} inventory item?</h2>
+                    <p>Please confirm that you'd like to delete {selectedInventory.item_name} from the inventory list. You won't be able to undo this action.</p>
                 </div>
                 <div className="flex-container__bottomflex">
-                    <button id="none" onClick={() => handleModel()}>Cancel</button>
+                    <button id="none" onClick={handleModel}>Cancel</button>
                     <button id="red" onClick={() => handleDeleting()}>Delete</button>
                 </div>
             </div>
         </div>
-    )
+        )
+    } else {
+        return (
+         <div></div>
+        )
+    }
 }
 
 export default DeleteInventory;
