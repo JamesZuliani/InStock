@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import backArrowIcon from "../../assets/icons/arrow_back-24px.svg";
 import InvalidPhoneIcon from "../../assets/icons/error-24px.svg";
-
+import Loader from "react-spinners/GridLoader";
 import "./EditWarehouse.scss";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { useFormik } from "formik";
@@ -11,10 +11,10 @@ import * as Yup from "yup";
 const baseUrl = "http://localhost:8080";
 
 function EditWarehouse() {
+
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-
   const { id } = useParams();
-
   const formik = useFormik({
     initialValues: {
       warehouse_name: "",
@@ -97,10 +97,20 @@ function EditWarehouse() {
         contact_phone: data.contact_phone,
         contact_email: data.contact_email,
       });
+      setLoading(false)
     });
   }, [id]);
-  if (!formik.values) {
-    return <div>Loading...</div>;
+  if (loading || !formik.values) {
+    return (
+      <div className="details__loading-container">
+        <Loader
+          color="#2e66e5"
+          size={10}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      </div>
+    );
   }
 
   return (

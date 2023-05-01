@@ -1,5 +1,5 @@
 import "./InventoryDetails.scss";
-import BackButton from "../assets/icons/arrow_back-24px.svg";
+import BackButton from "../../assets/icons/arrow_back-24px.svg";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -16,7 +16,6 @@ function InventoryDetails() {
         `http://localhost:8080/api/inventories/${id}`
       );
       setinventoryDetails(data);
-      console.log(data);
     };
     fetchsingleInventory();
   }, [id]);
@@ -38,7 +37,10 @@ function InventoryDetails() {
             <h1>{inventoryDetails.item_name || "-"}</h1>
           </div>
         </div>
-        <Link to={`/inventory/${id}/edit`} className="inv-details__button--edit">
+        <Link
+          to={`/inventory/${id}/edit`}
+          className="inv-details__button--edit"
+        >
           <h3 className="inv-details__button--text">Edit</h3>
         </Link>
       </div>
@@ -65,7 +67,9 @@ function InventoryDetails() {
           </div>
           <div className="inv-details__warehouse--container">
             <h3 className="inv-details__subtitle">WAREHOUSE:</h3>
-            <p className="inv-details__body">{inventoryDetails.warehouse_name}</p>
+            <p className="inv-details__body">
+              {inventoryDetails.warehouse_name}
+            </p>
           </div>
         </div>
       </div>

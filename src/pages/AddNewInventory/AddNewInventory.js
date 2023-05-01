@@ -1,13 +1,20 @@
-import "../pages/EditInventory.scss";
-import BackButton from "../assets/icons/arrow_back-24px.svg";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import "./AddNewInventory.scss";
+import BackButton from "../../assets/icons/arrow_back-24px.svg";
+import { Link, useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import InvalidPhoneIcon from "../assets/icons/error-24px.svg";
+import InvalidPhoneIcon from "../../assets/icons/error-24px.svg";
 import { useFormik, Field, FormikProvider } from "formik";
 import * as Yup from "yup";
+import Loader from "react-spinners/GridLoader";
 
-function EditInventory() {
+const baseUrl = "http://localhost:8080";
+
+function AddNewInventoryItem() {
+  const [loading, setLoading] = useState(true);
+
+  const navigate = useNavigate();
+
   // inital values - similar to useState()
   const formik = useFormik({
     initialValues: {
@@ -26,39 +33,33 @@ function EditInventory() {
       description: Yup.string().required("This field is required"),
       category: Yup.string().required("This field is required"),
       status: Yup.string().required("This field is required"),
-      quantity: Yup.string()
-        .matches(/^[0-9]+$/, "quantity should be a number")
-        .required("This field is required"),
+      quantity: Yup.number().required("This field is required"),
       warehouseName: Yup.string().required("This field is required"),
     }),
 
     // onSubmit function for the form
-    onSubmit: async (values) => {
-      // Handle form submission here
+    onSubmit: (values) => {
+      const warehouse_id = values.allWarehouses.find(warehouse => warehouse.warehouse_name === values.warehouseName).id 
+      const { itemName, description, category, status, quantity } = values;
+      const body = {
+        warehouse_id,
+        item_name: itemName,
+        description,
+        category,
+        status,
+        quantity,
+      };
       axios
-        .put(`http://localhost:8080/api/inventories/${id}`, {
-          item_name: values.itemName,
-          description: values.description,
-          category: values.category,
-          status: values.status,
-          quantity:
-            values.status.toLowerCase() === "in stock" ? values.quantity : "0",
-          warehouse_id: values.allWarehouses.find(
-            (id) => id.warehouse_name === formik.values.warehouseName
-          ).id,
-        })
-        .then((res) => {
-          alert("submitted");
-          navigate(-1);
+        .post(`${baseUrl}/api/inventories/`, body)
+        .then(() => {
+          alert('Submitted successfully!')
+          navigate(-1)
         })
         .catch((error) => {
-          console.log(error);
+          alert('error: ' + error.message)
         });
     },
   });
-
-  const { id } = useParams();
-  const navigate = useNavigate();
 
   const categories = [
     "Accessories",
@@ -70,53 +71,39 @@ function EditInventory() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/api/inventories/${id}`)
-      .then((res) => {
-        console.log(res.data);
-        const { data } = res;
-        // setting each field with its corresponding inital value, similarly set the state variables
-        const initialValues = {
-          itemName: data.item_name,
-          description: data.description,
-          category: data.category,
-          status: data.status,
-          quantity: data.quantity,
-          warehouseName: data.warehouse_name,
-          allWarehouses: [],
-        };
-        formik.setValues(initialValues);
-
-        // getting all the warehouses
-        axios.get(`http://localhost:8080/api/warehouses`).then((res) => {
-          const values = {
-            ...initialValues,
-            allWarehouses: res.data,
-          };
-          formik.setValues(values);
-        });
-        console.log(formik.values);
+      .get(`${baseUrl}/api/warehouses`)
+      .then(({ data }) => {
+        formik.setValues({ allWarehouses: data });
+        setLoading(false)
       })
-      .catch((err) => console.log(err));
-  }, [id]);
+      .catch((e) => console.log(e));
+  }, []);
 
-  // instead of checking each state variable, formik has a function that holds all of them
-  // if its there we would pass this guard condition
-  if (!formik.values) {
-    return <div>Loading</div>;
+  if (loading || formik.values.allWarehouses.length === 0) {
+    return (
+      <div className="details__loading-container">
+        <Loader
+          color="#2e66e5"
+          size={10}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      </div>
+    );
   }
-  console.log(formik.values.allWarehouses);
+
   return (
-    <div className="edit">
-      <div className="edit-header">
-        <div className="edit-header__container">
+    <div className="add">
+      <div className="add-header">
+        <div className="add-header__container">
           <img
             onClick={() => navigate(-1)}
-            className="edit-header__backbutton"
+            className="add-header__backbutton"
             src={BackButton}
             alt="back button arrow"
           ></img>
-          <div className="edit-header__title">
-            <h1>Edit Inventory Item</h1>
+          <div className="add-header__title">
+            <h1>Add New Inventory Item</h1>
           </div>
         </div>
       </div>
@@ -126,31 +113,37 @@ function EditInventory() {
       <FormikProvider value={formik}>
         {/* formik.handleSubmit refrences to the inital object where we initated the formik at the top */}
         <form onSubmit={formik.handleSubmit}>
-          <div className="item-edit">
-            <div className="item-details">
-              <h2 className="item-details__header">Item Details</h2>
+          <div className="item-add">
+            <div className="invitem-details">
+              <h2 className="invitem-details__header">Item Details</h2>
 
               {/* item name input */}
-              <div className="item-details__box">
-                <h3 className="item-details__subtitle">Item Name</h3>
+              <div className="invitem-details__box">
+                <h3 className="invitem-details__subtitle">Item Name</h3>
                 <input
+                  value={formik.values.itemName || ""}
+                  placeholder="Item Name"
                   name="itemName"
-                  className={`item-details__inputs`}
+                  className={`invitem-details__inputs ${
+                    formik.touched.itemName && formik.errors.itemName
+                      ? "invitem-details__inputs--invalid"
+                      : null
+                  }`}
                   type="text"
-                  value={formik.values.itemName}
                   onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
                 ></input>
 
                 {/* if there is any errors, this block runs and shows the error */}
                 {formik.touched.itemName && formik.errors.itemName ? (
-                  <div className="item-edit__error">
+                  <div className="invitem-details__error">
                     <img
                       src={InvalidPhoneIcon}
                       alt="Error icon"
                       title="Input Error"
-                      className="item-edit__error-icon"
+                      className="invitem-details__error-icon"
                     />
-                    <span className="item-edit__error-msg">
+                    <span className="invitem-details__error-msg">
                       {formik.errors.itemName}
                     </span>
                   </div>
@@ -158,34 +151,39 @@ function EditInventory() {
               </div>
 
               {/* description input */}
-              <div className="item-details__box">
-                <h3 className="item-details__subtitle">Description</h3>
+              <div className="invitem-details__box">
+                <h3 className="invitem-details__subtitle">Description</h3>
                 <textarea
+                  placeholder="Please enter a brief item description..."
                   name="description"
-                  className="item-details__description "
+                  className={`invitem-details__description ${
+                    formik.touched.itemName && formik.errors.itemName
+                      ? "invitem-details__inputs--invalid"
+                      : null
+                  }`}
                   type="text"
-                  value={formik.values.description}
                   onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
                 ></textarea>
 
                 {/* if there is any errors, this block runs and shows the error */}
                 {formik.touched.description && formik.errors.description ? (
-                  <div className="item-edit__error">
+                  <div className="invitem-details__error">
                     <img
                       src={InvalidPhoneIcon}
                       alt="Error icon"
                       title="Input Error"
-                      className="item-edit__error-icon"
+                      className="invitem-details__error-icon"
                     />
-                    <span className="item-edit__error-msg">
+                    <span className="invitem-details__error-msg">
                       {formik.errors.description}
                     </span>
                   </div>
                 ) : null}
               </div>
               {/* Category input */}
-              <div className="item-details__subtitle-container">
-                <h3 className="item-details__subtitle">Category</h3>
+              <div className="invitem-details__subtitle-container">
+                <h3 className="invitem-details__subtitle">Category</h3>
 
                 {/* instead of `select` element,
                      we imported this similar component from formik to make our job easier
@@ -194,11 +192,14 @@ function EditInventory() {
                 <Field
                   as="select"
                   name="category"
-                  className="item-details__name"
-                  value={formik.values.category}
+                  className="invitem-details__name"
                   onChange={(e) => formik.handleChange(e)}
+                  value={formik.values.category || ""}
                 >
                   {/* generating the options */}
+                  <option value="" disabled>
+                    Please select
+                  </option>
                   {categories.map((category) => {
                     return (
                       <option key={category} value={category}>
@@ -210,11 +211,10 @@ function EditInventory() {
               </div>
             </div>
 
-            <div className="item-details__availability">
-              <h2 className="item-details__header">Item Availability</h2>
+            <div className="invitem-details__availability">
+              <h2 className="invitem-details__header">Item Availability</h2>
               <div>
-                <h3 className="item-details__subtitle">Status</h3>
-                {console.log(formik.values.status)}
+                <h3 className="invitem-details__subtitle">Status</h3>
                 {/* status radio buttons input */}
                 <div className="radio-buttons">
                   <label
@@ -224,17 +224,21 @@ function EditInventory() {
                         : ""
                     }`}
                   >
-                    <input
-                      name="statusIn"
+                    <Field
+                      name="status"
                       className="radio-buttons__input"
                       type="radio"
                       value="In Stock"
                       checked={
                         formik.values.status === "In Stock" ? true : false
                       }
-                      onChange={() =>
-                        formik.setFieldValue("status", "In Stock")
-                      }
+                      onChange={(e) => {
+                        formik.handleChange(e);
+                        formik.setFieldValue(
+                          "quantity",
+                          formik.values.quantity || ""
+                        );
+                      }}
                     />
                     In Stock
                   </label>
@@ -246,17 +250,18 @@ function EditInventory() {
                         : ""
                     }`}
                   >
-                    <input
-                      name="statusOut"
+                    <Field
+                      name="status"
                       className="radio-buttons__input"
                       type="radio"
                       value="Out of Stock"
                       checked={
                         formik.values.status === "Out of Stock" ? true : false
                       }
-                      onChange={() =>
-                        formik.setFieldValue("status", "Out of Stock")
-                      }
+                      onChange={(e) => {
+                        formik.handleChange(e);
+                        formik.setFieldValue("quantity", 0);
+                      }}
                     />
                     Out of Stock
                   </label>
@@ -264,26 +269,25 @@ function EditInventory() {
               </div>
               {/* showing the quantity page based on the status */}
               {formik.values.status === "In Stock" && (
-                <div className="item-details__quantity-container">
-                  <h3 className="item-details__subtitle">Quantity</h3>
+                <div className="invitem-details__quantity-container">
+                  <h3 className="invitem-details__subtitle">Quantity</h3>
                   <input
                     name="quantity"
-                    className="item-details__quantity"
+                    className="invitem-details__quantity"
                     type="text"
-                    value={formik.values.quantity}
                     onChange={formik.handleChange}
                   ></input>
 
                   {/* if there is any errors {not being a number or being empty} , this block runs and shows the error */}
                   {formik.touched.quantity && formik.errors.quantity ? (
-                    <div className="item-edit__error">
+                    <div className="invitem-details__error">
                       <img
                         src={InvalidPhoneIcon}
                         alt="Error icon"
                         title="Input Error"
-                        className="item-edit__error-icon"
+                        className="invitem-details__error-icon"
                       />
-                      <span className="item-edit__error-msg">
+                      <span className="invitem-details__error-msg">
                         {formik.errors.quantity}
                       </span>
                     </div>
@@ -292,20 +296,23 @@ function EditInventory() {
               )}
 
               {/* Warehouse dropDown */}
-              <div className="item-details__box">
-                <h3 className="item-details__subtitle">Warehouse</h3>
-                <div className="item-details__form">
+              <div className="invitem-details__box">
+                <h3 className="invitem-details__subtitle">Warehouse</h3>
+                <div className="invitem-details__form">
                   {/* instead of `select` element,
                      we imported this similar component from formik to make our job easier
                      it manages the `onChange` and everthing by itself...
                      */}
                   <Field
                     name="warehouseName"
-                    className="item-details__name"
-                    value={formik.values.warehouseName}
+                    className="invitem-details__name"
+                    value={formik.values.warehouseName || ""}
                     as="select"
                     onChange={(e) => formik.handleChange(e)}
                   >
+                    <option value="" disabled>
+                      Please select
+                    </option>
                     {/* generating the options */}
                     {formik.values.allWarehouses &&
                       formik.values.allWarehouses.map((warehouse) => {
@@ -323,18 +330,19 @@ function EditInventory() {
               </div>
             </div>
           </div>
-          <div className="item-footer">
-          <button
-              type="button" onClick={()=> navigate('/inventory')}
-              className="item-footer__form-button item-footer__form-button--secondary"
+          <div className="invitem-footer">
+            <button
+              type="button"
+              onClick={() => navigate("/inventory")}
+              className="invitem-footer__form-button invitem-footer__form-button--secondary"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="item-footer__form-button item-footer__form-button--primary"
+              className="invitem-footer__form-button invitem-footer__form-button--primary"
             >
-              Save
+              + Add Item
             </button>
             <div className="dropdown-button-container"></div>
           </div>
@@ -344,4 +352,4 @@ function EditInventory() {
   );
 }
 
-export default EditInventory;
+export default AddNewInventoryItem;
