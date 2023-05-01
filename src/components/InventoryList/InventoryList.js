@@ -8,7 +8,7 @@ import "./InventoryList.scss";
 
 const baseUrl = "http://localhost:8080";
 
-export default function InventoryList({ inventory }) {
+export default function InventoryList({ inventory, handleModel }) {
   return inventory.map((item, index) => {
     return (
       <Link
@@ -59,16 +59,24 @@ export default function InventoryList({ inventory }) {
           <div className="button-container--inventory">
             <img
               className="action-icon--inventory"
+              onClick={(e) => {
+                e.preventDefault();
+                handleModel(item);
+              }}
               src={deleteIcon}
               alt="delete-icon"
             ></img>
-            <img className="action-icon--inventory" src={editIcon} alt="edit-icon"></img>
+            <img
+              className="action-icon--inventory"
+              src={editIcon}
+              alt="edit-icon"
+            ></img>
           </div>
         </div>
         {/* this section of html is not rendered until tablet and desktop breakpoint */}
         <div
           className={
-            index !== item.length - 1
+            index !== inventory.length - 1
               ? "item item--fullscreen item--border"
               : "item item--fullscreen"
           }
@@ -107,6 +115,10 @@ export default function InventoryList({ inventory }) {
           </div>
           <div className="button-container--inventory">
             <img
+              onClick={(e) => {
+                e.preventDefault();
+                handleModel(item);
+              }}
               className="action-icon"
               src={deleteIcon}
               alt="delete-icon"

@@ -25,47 +25,47 @@ function InventoryDetails() {
     inventoryDetails.quantity > 0 ? "in-stock" : "out-of-stock";
 
   return (
-    <div className="details">
-      <div className="details__title--container">
-        <div className="details__container--1">
+    <div className="inv-details">
+      <div className="inv-details__title--container">
+        <div className="inv-details__container--1">
           <img
             onClick={() => navigate(-1)}
-            className="details__back-button"
+            className="inv-details__back-button"
             src={BackButton}
             alt="back button arrow"
           ></img>
-          <div className="details__title">
+          <div className="inv-details__title">
             <h1>{inventoryDetails.item_name || "-"}</h1>
           </div>
         </div>
-        <Link to={`/inventory/${id}/edit`} className="details__button--edit">
-          <h3 className="details__button--text">Edit</h3>
+        <Link to={`/inventory/${id}/edit`} className="inv-details__button--edit">
+          <h3 className="inv-details__button--text">Edit</h3>
         </Link>
       </div>
 
-      <div className="details__section">
-        <div className="details__leftside--container">
-          <h3 className="details__subtitle">ITEM DESCRIPTION:</h3>
-          <p className="details__body">{inventoryDetails.description}</p>
-          <h3 className="details__subtitle">CATEGORY</h3>
-          <p className="details__body">{inventoryDetails.category}</p>
+      <div className="inv-details__section">
+        <div className="inv-details__leftside--container">
+          <h3 className="inv-details__subtitle">ITEM DESCRIPTION:</h3>
+          <p className="inv-details__body">{inventoryDetails.description}</p>
+          <h3 className="inv-details__subtitle">CATEGORY</h3>
+          <p className="inv-details__body">{inventoryDetails.category}</p>
         </div>
-        <div className="details__subtitle--container">
-          <div className="details__rowcontainer">
+        <div className="inv-details__subtitle--container">
+          <div className="inv-details__rowcontainer">
             <div>
-              <h3 className="details__subtitle">STATUS:</h3>
-              <h4 className={`details__stock ${dynamicTextColor}`}>
+              <h3 className="inv-details__subtitle">STATUS:</h3>
+              <h4 className={`inv-details__stock ${dynamicTextColor}`}>
                 {inventoryDetails.status}
               </h4>
             </div>
             <div>
-              <h3 className="details__subtitle">QUANTITY:</h3>
-              <p className="details__body">{inventoryDetails.quantity}</p>
+              <h3 className="inv-details__subtitle">QUANTITY:</h3>
+              <p className="inv-details__body">{inventoryDetails.quantity}</p>
             </div>
           </div>
-          <div className="details__warehouse--container">
-            <h3 className="details__subtitle">WAREHOUSE:</h3>
-            <p className="details__body">{inventoryDetails.warehouse_name}</p>
+          <div className="inv-details__warehouse--container">
+            <h3 className="inv-details__subtitle">WAREHOUSE:</h3>
+            <p className="inv-details__body">{inventoryDetails.warehouse_name}</p>
           </div>
         </div>
       </div>

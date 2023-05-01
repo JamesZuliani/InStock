@@ -33,7 +33,7 @@
   @include tablet {
     margin-top: 0;
     border-top: none;
-    border-bottom: 1px solid $outline-color;
+    // border-bottom: 1px solid $outline-color;
     display: flex;
     display: none;
   }
@@ -53,7 +53,7 @@
 
     @include tablet {
       display: flex;
-      padding: 0.4rem 2rem;
+      padding: 0.5rem 2rem;
       align-items: center;
     }
   }

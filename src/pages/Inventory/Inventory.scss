@@ -179,7 +179,7 @@
   }
 }
 
-.label--fullscreen {
+.label-inv--fullscreen {
   display: none;
 
   @include tablet {
@@ -189,11 +189,11 @@
   }
 }
 
-.contact-info-label {
-  width: 24%;
-}
+// .contact-info-label-inv {
+//   width: 20%;
+// }
 
-.actions-info-label {
+.actions-info-label-inv {
   @include tablet {
     width: 20%;
     display: inline;

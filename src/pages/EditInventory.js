@@ -133,15 +133,13 @@ function EditInventory() {
               {/* item name input */}
               <div className="item-details__box">
                 <h3 className="item-details__subtitle">Item Name</h3>
-                <div className="item-details__form">
-                  <input
-                    name="itemName"
-                    className={`item-details__name`}
-                    type="text"
-                    value={formik.values.itemName}
-                    onChange={formik.handleChange}
-                  ></input>
-                </div>
+                <input
+                  name="itemName"
+                  className={`item-details__inputs`}
+                  type="text"
+                  value={formik.values.itemName}
+                  onChange={formik.handleChange}
+                ></input>
 
                 {/* if there is any errors, this block runs and shows the error */}
                 {formik.touched.itemName && formik.errors.itemName ? (
@@ -162,109 +160,119 @@ function EditInventory() {
               {/* description input */}
               <div className="item-details__box">
                 <h3 className="item-details__subtitle">Description</h3>
-                <div className="item-details__form item-details__forml">
-                  <div className="item-details__description">
-                    <input
-                      name="description"
-                      className="item-details__name--large"
-                      type="text"
-                      value={formik.values.description}
-                      onChange={formik.handleChange}
-                    ></input>
+                <textarea
+                  name="description"
+                  className="item-details__description "
+                  type="text"
+                  value={formik.values.description}
+                  onChange={formik.handleChange}
+                ></textarea>
 
-                    {/* if there is any errors, this block runs and shows the error */}
-                    {formik.touched.description && formik.errors.description ? (
-                      <div className="item-edit__error">
-                        <img
-                          src={InvalidPhoneIcon}
-                          alt="Error icon"
-                          title="Input Error"
-                          className="item-edit__error-icon"
-                        />
-                        <span className="item-edit__error-msg">
-                          {formik.errors.description}
-                        </span>
-                      </div>
-                    ) : null}
+                {/* if there is any errors, this block runs and shows the error */}
+                {formik.touched.description && formik.errors.description ? (
+                  <div className="item-edit__error">
+                    <img
+                      src={InvalidPhoneIcon}
+                      alt="Error icon"
+                      title="Input Error"
+                      className="item-edit__error-icon"
+                    />
+                    <span className="item-edit__error-msg">
+                      {formik.errors.description}
+                    </span>
                   </div>
-                </div>
+                ) : null}
+              </div>
+              {/* Category input */}
+              <div className="item-details__subtitle-container">
+                <h3 className="item-details__subtitle">Category</h3>
 
-                {/* Category input */}
-                <div className="item-details__box">
-                  <h3 className="item-details__subtitle">Category</h3>
-                  <div className="item-details__form">
-                    {/* instead of `select` element,
+                {/* instead of `select` element,
                      we imported this similar component from formik to make our job easier
                      it manages the `onChange` and everthing by itself...
                      */}
-                    <Field
-                      as="select"
-                      name="category"
-                      className="item-details__name"
-                      value={formik.values.category}
-                      onChange={(e) => formik.handleChange(e)}
-                    >
-                      {/* generating the options */}
-                      {categories.map((category) => {
-                        return (
-                          <option key={category} value={category}>
-                            {category}
-                          </option>
-                        );
-                      })}
-                    </Field>
-                  </div>
-                </div>
+                <Field
+                  as="select"
+                  name="category"
+                  className="item-details__name"
+                  value={formik.values.category}
+                  onChange={(e) => formik.handleChange(e)}
+                >
+                  {/* generating the options */}
+                  {categories.map((category) => {
+                    return (
+                      <option key={category} value={category}>
+                        {category}
+                      </option>
+                    );
+                  })}
+                </Field>
               </div>
             </div>
 
             <div className="item-details__availability">
               <h2 className="item-details__header">Item Availability</h2>
-              <h3 className="item-details__subtitle">Status</h3>
+              <div>
+                <h3 className="item-details__subtitle">Status</h3>
+                {console.log(formik.values.status)}
+                {/* status radio buttons input */}
+                <div className="radio-buttons">
+                  <label
+                    className={`radio-buttons__instock ${
+                      formik.values.status === "Out of Stock"
+                        ? "radio-buttons--inactive"
+                        : ""
+                    }`}
+                  >
+                    <input
+                      name="statusIn"
+                      className="radio-buttons__input"
+                      type="radio"
+                      value="In Stock"
+                      checked={
+                        formik.values.status === "In Stock" ? true : false
+                      }
+                      onChange={() =>
+                        formik.setFieldValue("status", "In Stock")
+                      }
+                    />
+                    In Stock
+                  </label>
 
-              {/* status radio buttons input */}
-              <div className="radio-buttons-container">
-                <label className="radio-buttons__instock">
-                  <input
-                    name="statusIn"
-                    className="radio-buttons__input"
-                    type="radio"
-                    value="In Stock"
-                    checked={formik.values.status === "In Stock" ? true : false}
-                    onChange={() => formik.setFieldValue("status", "In Stock")}
-                  />
-                  In Stock
-                </label>
-                <label>
-                  <input
-                    name="statusOut"
-                    className="radio-buttons__input"
-                    type="radio"
-                    value="Out of Stock"
-                    checked={
-                      formik.values.status === "Out of Stock" ? true : false
-                    }
-                    onChange={() =>
-                      formik.setFieldValue("status", "Out of Stock")
-                    }
-                  />
-                  Out of Stock
-                </label>
+                  <label
+                    className={`radio-buttons__outstock ${
+                      formik.values.status === "In Stock"
+                        ? "radio-buttons--inactive"
+                        : ""
+                    }`}
+                  >
+                    <input
+                      name="statusOut"
+                      className="radio-buttons__input"
+                      type="radio"
+                      value="Out of Stock"
+                      checked={
+                        formik.values.status === "Out of Stock" ? true : false
+                      }
+                      onChange={() =>
+                        formik.setFieldValue("status", "Out of Stock")
+                      }
+                    />
+                    Out of Stock
+                  </label>
+                </div>
               </div>
-
               {/* showing the quantity page based on the status */}
               {formik.values.status === "In Stock" && (
-                <div className="item-details__quantity">
+                <div className="item-details__quantity-container">
                   <h3 className="item-details__subtitle">Quantity</h3>
-                  <div className="item-details__form">
-                    <input
-                      name="quantity"
-                      className="item-details__name"
-                      type="text"
-                      value={formik.values.quantity}
-                      onChange={formik.handleChange}
-                    ></input>
-                  </div>
+                  <input
+                    name="quantity"
+                    className="item-details__quantity"
+                    type="text"
+                    value={formik.values.quantity}
+                    onChange={formik.handleChange}
+                  ></input>
 
                   {/* if there is any errors {not being a number or being empty} , this block runs and shows the error */}
                   {formik.touched.quantity && formik.errors.quantity ? (
@@ -316,11 +324,17 @@ function EditInventory() {
             </div>
           </div>
           <div className="item-footer">
-            <Link to="/inventory" className="item-footer__cancel">
-              <h3 className="item-footer__canceltext">Cancel</h3>
-            </Link>
-            <button type="submit" className="item-footer__save">
-              <h3 className="item--footer--savetext">Save</h3>
+          <button
+              type="button" onClick={()=> navigate('/inventory')}
+              className="item-footer__form-button item-footer__form-button--secondary"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              className="item-footer__form-button item-footer__form-button--primary"
+            >
+              Save
             </button>
             <div className="dropdown-button-container"></div>
           </div>

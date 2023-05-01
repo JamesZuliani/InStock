@@ -8,35 +8,61 @@ import editIcon from "../../assets/icons/edit-24px.svg";
 import vectorIcon from "../../assets/icons/chevron_right-24px.svg";
 import sort from "../../assets/icons/sort-24px.svg";
 import Loader from "react-spinners/GridLoader";
+import DeleteInventory from "../../components/DeleteInventory/DeleteInventory";
 
 function WarehouseDetails() {
   const navigate = useNavigate();
   const { id } = useParams();
+  // sort
   let sorted;
-  const [warehouseDetails, setwarehouseDetails] = useState(null);
+  // other state variables
+  // const [warehouseDetails, setwarehouseDetails] = useState(null);
   const [inventory, setInventory] = useState(null);
+  const [currentWarehouse, setCurrentWarehouse] = useState(null);
   const [loading, setLoading] = useState(true);
+  // sort state variables
   const [sortToggle, setSortToggle] = useState({
     item_name: "asc",
     category: "asc",
     status: "asc",
     quantity: "asc",
   });
+
+  //deleting inventory item starts here
+  const [modelActive, setModelActive] = useState(false);
+  const [selectedInventory, setSelectedInventory] = useState();
+
+  function handleModel(inventory) {
+    setModelActive(!modelActive);
+    const body = document.querySelector("body");
+    body.classList.toggle("modal-on");
+    setSelectedInventory(inventory);
+  }
+
+  //delete inventory ends here
+
   useEffect(() => {
-    axios.get(`http://localhost:8080/api/warehouses/${id}`).then((res) => {
-      const currentWarehouse = res.data;
-      axios.get(`http://localhost:8080/api/inventories`).then((res) => {
-        const filteredItems = res.data.filter((item) => {
-          return item.warehouse_name === currentWarehouse.warehouse_name;
+    axios
+      .get(`http://localhost:8080/api/warehouses/${id}`)
+      .then((res) => {
+        setCurrentWarehouse(res.data);
+        return res.data;
+      })
+      .then((warehouse) => {
+        axios.get(`http://localhost:8080/api/inventories`).then((res) => {
+          console.log(warehouse);
+          const filteredItems = res.data.filter((item) => {
+            return item.warehouse_name === warehouse.warehouse_name;
+          });
+
+          setInventory(filteredItems);
+          // setwarehouseDetails(currentWarehouse);
+          setLoading(false);
         });
-        setInventory(filteredItems);
-        setwarehouseDetails(currentWarehouse);
-        setLoading(false);
       });
-    });
   }, [id]);
 
-  if (loading || !warehouseDetails || !inventory) {
+  if (loading || !currentWarehouse || !inventory) {
     return (
       <div className="details__loading-container">
         <Loader
@@ -50,7 +76,7 @@ function WarehouseDetails() {
   }
 
   // since there was no specific endpoint for this on backEnd,
-  // we did the logic here. 
+  // we did the logic here.
   const toggleSortOrder = (key) => {
     setSortToggle({
       ...sortToggle,
@@ -69,7 +95,6 @@ function WarehouseDetails() {
       sorted = inventory.sort((a, b) =>
         sortToggle[key] === "asc" ? a[key] - b[key] : b[key] - a[key]
       );
-      console.log(sorted);
       setInventory(sorted);
     }
     toggleSortOrder(key);
@@ -78,8 +103,8 @@ function WarehouseDetails() {
   return (
     <>
       <section className="details">
-        <div className="details__title--container">
-          <div className="details__container--1">
+        <div className="details__title-container">
+          <div className="details__container">
             <img
               onClick={() => navigate(-1)}
               className="details__back-button"
@@ -88,47 +113,47 @@ function WarehouseDetails() {
             ></img>
 
             <div className="details__title">
-              <h1>{warehouseDetails.warehouse_name}</h1>
+              <h1>{currentWarehouse.warehouse_name}</h1>
             </div>
           </div>
-          <Link to={`/warehouse/${id}/edit`} className="details__button--edit">
-            <h3 className="details__button--text">Edit</h3>
+          <Link to={`/warehouse/${id}/edit`} className="details__button-edit">
+            <h3 className="details__button-text">Edit</h3>
           </Link>
         </div>
 
         <div className="details__section">
-          <div className="details__address--container">
+          <div className="details__address-container">
             <h3 className="details__subtitle">WAREHOUSE ADDRESS:</h3>
             <p className="details__subtitle-text">
-              {`${warehouseDetails.address}, `}
-              {`${warehouseDetails.city}, `}
-              {warehouseDetails.country}
+              {`${currentWarehouse.address}, `}
+              {`${currentWarehouse.city}, `}
+              {currentWarehouse.country}
             </p>
           </div>
-          <div className="details__subtitle--container">
-            <div className="details__subtitle--sub-container">
+          <div className="details__subtitle-container">
+            <div>
               <h3 className="details__subtitle">CONTACT NAME:</h3>
               <p>
-                {warehouseDetails.contact_name
-                  ? `${warehouseDetails.contact_name}`
+                {currentWarehouse.contact_name
+                  ? `${currentWarehouse.contact_name}`
                   : "- "}
               </p>
               <p>
-                {warehouseDetails.contact_position
-                  ? `${warehouseDetails.contact_position}`
+                {currentWarehouse.contact_position
+                  ? `${currentWarehouse.contact_position}`
                   : "-"}
               </p>
             </div>
-            <div className="details__contact--container">
+            <div>
               <h3 className="details__subtitle">CONTACT INFORMATION:</h3>
               <p>
-                {warehouseDetails.contact_phone
-                  ? `${warehouseDetails.contact_phone}`
+                {currentWarehouse.contact_phone
+                  ? `${currentWarehouse.contact_phone}`
                   : "- "}
               </p>
               <p>
-                {warehouseDetails.contact_email
-                  ? `${warehouseDetails.contact_email}`
+                {currentWarehouse.contact_email
+                  ? `${currentWarehouse.contact_email}`
                   : "-"}
               </p>
             </div>
@@ -285,6 +310,11 @@ function WarehouseDetails() {
                     </div>
                     <div className="button-container">
                       <img
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleModel(item.id);
+                          setSelectedInventory(item);
+                        }}
                         className="action-icon"
                         src={deleteIcon}
                         alt="delete-icon"
@@ -344,6 +374,11 @@ function WarehouseDetails() {
 
                     <div className="button-container">
                       <img
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleModel(item.id);
+                          setSelectedInventory(item);
+                        }}
                         className="action-icon"
                         src={deleteIcon}
                         alt="delete-icon"
@@ -360,6 +395,13 @@ function WarehouseDetails() {
             })}
         </section>
       </section>
+      <DeleteInventory
+        setInventory={setInventory}
+        selectedInventory={selectedInventory}
+        handleModel={handleModel}
+        modelActive={!modelActive}
+        currentWarehouse={currentWarehouse}
+      />
     </>
   );
 }
