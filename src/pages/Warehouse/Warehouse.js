@@ -6,11 +6,13 @@ import { Link } from "react-router-dom";
 import DeleteWarehouse from "../../components/DeleteWarehouse/DeleteWarehouse";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Loader from "react-spinners/GridLoader";
 
 const baseUrl = "http://localhost:8080";
 
 function Warehouse() {
   const [selectedWarehouse, setSelectedWarehouse] = useState();
+  const [loading, setLoading] = useState(true);
   const [sortToggle, setSortToggle] = useState({
     warehouse: "asc",
     address: "asc",
@@ -37,9 +39,22 @@ function Warehouse() {
   useEffect(() => {
     axios.get(`${baseUrl}/api/warehouses`).then(({ data }) => {
       setWarehouses(data);
+      setLoading(false)
     });
   }, []);
 
+  if (loading) {
+    return (
+      <div className="details__loading-container">
+        <Loader
+          color="#2e66e5"
+          size={10}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      </div>
+    );
+  }
   return (
     <div className="warehouse-list-page">
       <div className="warehouse-list-page__header">
