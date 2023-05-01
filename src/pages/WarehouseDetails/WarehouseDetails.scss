@@ -141,3 +141,14 @@
     }
   }
 }
+
+.name-container__title-inv {
+  color: #2e66e5;
+  font-weight: 700;
+  transition: all 0.3s;
+
+  &:hover {
+    text-decoration: underline;
+    padding-right: 0.2rem;
+  }
+}

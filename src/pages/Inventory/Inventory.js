@@ -3,7 +3,7 @@ import "./Inventory.scss";
 import search from "../../assets/icons/search-24px.svg";
 import sort from "../../assets/icons/sort-24px.svg";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import DeleteInventory from "../../components/DeleteInventory/DeleteInventory";
 import Loader from "react-spinners/GridLoader";
@@ -78,9 +78,9 @@ export default function Inventory() {
               alt="search-Icon"
             ></img>
           </div>
-          <div onClick={() => navigate('/inventory/new')} className="add-inventory">
-            <p  className="add-inventory__text"> + Add New Item</p>
-          </div>
+          <Link to="/inventory/new" className="inventory-list-page__add-button">
+            + Add New Item
+          </Link>
         </div>
       </div>
       <div className="fullscreen-labels-inv">
