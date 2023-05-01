@@ -29,7 +29,7 @@ export default function Inventory() {
       setInventory(data);
       setLoading(false)
     });
-  }, []);
+  },[]);
 
 
   const toggleSortOrder = (key) => {

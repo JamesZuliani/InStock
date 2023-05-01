@@ -30,7 +30,8 @@ function WarehouseDetails() {
 
   //deleting inventory item starts here
   const [modelActive, setModelActive] = useState(false);
-  const [selectedInventory, setSelectedInventory] = useState();
+  
+  const [selectedInventory, setSelectedInventory] = useState('')
 
   function handleModel(inventory) {
     setModelActive(!modelActive);
