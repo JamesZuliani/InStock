@@ -31,6 +31,27 @@
       // margin-bottom: 1.5rem;
     }
   }
+  &__add-button {
+    display: flex;
+
+    justify-content: center;
+    flex: 1;
+    text-decoration: none;
+    border-radius: 23px;
+    color: white;
+    padding: 0.5rem 0;
+    margin: 0.5rem 1rem 1.5rem 1rem;
+
+    background-color: #2e66e6;
+    transition: 0.3s all;
+    &:hover {
+      cursor: pointer;
+      background-color: #232940;
+    }
+    @include tablet {
+      padding: 0.5rem 1rem;
+    }
+  }
 }
 
 .heading {
@@ -98,6 +119,7 @@
     }
   }
 }
+
 .category-label {
   &__text {
     transition: text-decoration-color 0.5s;
@@ -109,6 +131,7 @@
     }
   }
 }
+
 .status-label {
   &__text {
     transition: text-decoration-color 0.5s;
@@ -120,6 +143,7 @@
     }
   }
 }
+
 .quantity-label {
   &__text {
     transition: text-decoration-color 0.5s;
@@ -131,6 +155,7 @@
     }
   }
 }
+
 .location-label {
   &__text {
     transition: text-decoration-color 0.5s;
@@ -175,7 +200,7 @@
   }
 }
 
-.label--fullscreen {
+.label-inv--fullscreen {
   display: none;
 
   @include tablet {
@@ -185,10 +210,11 @@
   }
 }
 
-.contact-info-label {
-  width: 24%;
-}
-.actions-info-label {
+// .contact-info-label-inv {
+//   width: 20%;
+// }
+
+.actions-info-label-inv {
   @include tablet {
     width: 20%;
     display: inline;

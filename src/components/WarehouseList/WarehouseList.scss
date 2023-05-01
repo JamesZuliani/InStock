@@ -20,7 +20,7 @@
     display: flex;
 
     @include tablet {
-      width: 20%;
+      width: 19.5%;
     }
   }
 }
@@ -33,7 +33,7 @@
   @include tablet {
     margin-top: 0;
     border-top: none;
-    border-bottom: 1px solid $outline-color;
+    // border-bottom: 1px solid $outline-color;
     display: flex;
     display: none;
   }
@@ -43,6 +43,7 @@
       border-bottom: 1px solid $outline-color;
     }
   }
+
   &--fullscreen {
     display: none;
     transition: all 0.3s;
@@ -53,7 +54,7 @@
 
     @include tablet {
       display: flex;
-      padding: 0.4rem 2rem;
+      padding: 1.5rem 2rem;
       align-items: center;
     }
   }
@@ -68,7 +69,7 @@
   }
 }
 
-.location-container {
+.location-wrapper {
   width: 10rem;
 
   @include tablet {
@@ -112,11 +113,12 @@
 
   @include tablet {
     width: 20%;
-    padding-left: 0;
+    padding:0
   }
 
   &__title {
     font-size: 0.875rem;
+    width: 95%;
   }
 }
 
@@ -126,6 +128,7 @@
   @include tablet {
     width: 20%;
     font-size: 0.875rem;
+    padding: 0;
   }
 
   &__phone {
@@ -137,12 +140,17 @@
   }
 }
 
+.information-container {
+  padding: 0.8rem 0;
+}
+
 .name-container {
-  padding: 0.8rem;
+  padding: 0.8rem 0;
 
   @include tablet {
     width: 20%;
-    padding-left: 0.6rem;
+    // padding-left: 0.6rem;
+    padding: 0;
   }
 
   &__title {
@@ -159,9 +167,10 @@
   justify-content: space-between;
 
   @include tablet {
-    width: 20%;
+    width: 18%;
     justify-content: center;
     align-items: center;
+    padding: 0;
   }
 }
 
@@ -180,4 +189,10 @@
 
 .vector-icon {
   width: 1rem;
+}
+
+.actions-info-label {
+  @include tablet {
+    text-align: center;
+  }
 }

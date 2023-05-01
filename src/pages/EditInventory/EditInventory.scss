@@ -1,0 +1,273 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/variables" as *;
+
+.edit {
+  bottom: 5rem;
+  position: relative;
+  background-color: $global-color;
+  margin: 1rem;
+  border-radius: 3px;
+  box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
+
+  @include tablet {
+    margin: 2rem;
+    bottom: 7rem;
+  }
+
+  @include desktop {
+    width: calc($desktop-breakpoint - 4rem);
+    margin: 0 auto;
+    bottom: 5rem;
+  }
+}
+
+.edit-header {
+  display: flex;
+  border-bottom: 1px solid #bdc5d5;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  padding: 0rem 2rem;
+  &__container {
+    display: flex;
+    align-items: baseline;
+  }
+  
+  &__backbutton {
+    transition: all 0.3s;
+    &:hover {
+      filter: opacity(0.7);
+    }
+  }
+  
+  &__title {
+    padding: 2rem 0.5rem;
+  
+    @include tablet {
+      margin-top: 0.5rem;
+    }
+  }
+  
+  @include tablet {
+    height: 5rem;
+  }
+}
+
+
+
+.item-edit {
+  display: flex;
+  flex-direction: column;
+
+  @include tablet {
+    display: flex;
+    flex-direction: row;
+    margin: 3rem 0;
+  }
+
+  // error messages styles
+  &__error {
+    position: absolute;
+    margin-top: 0.12rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  &__error-msg {
+    animation: fadeIn 0.3s ease-in-out;
+    font-weight: 400;
+    font-size: 0.75rem;
+    transition: all 0.3s;
+    &:hover {
+      filter: opacity(0.7);
+    }
+  }
+
+  &__error-icon {
+    animation: fadeIn 0.5s ease-in-out;
+    height: 1rem;
+  }
+  &--invalid {
+    border-color: #c94515;
+  }
+}
+
+.item-details {
+  padding: 1rem 2rem 2rem 2rem;
+  gap: 1.5rem;
+  border-bottom: 1px solid $outline-color;
+  @include tablet {
+    border-bottom: none;
+    padding: 2rem;
+    padding: 0 2rem;
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    align-items: flex-start;
+    border-right: 1px solid #bdc5d5;
+  }
+  &__availability {
+    padding: 1rem 2rem 1rem 2rem;
+    gap: 1.4rem;
+    @include tablet {
+      padding: 0 2rem;
+      display: flex;
+      width: 50%;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+  &__subtitle-container {
+    width: 100%;
+  }
+  &__subtitle {
+    color: $primary-text-color;
+    margin-top: 1rem;
+    margin-bottom: 0.4rem;
+    @include tablet {
+      margin-top: 0;
+    }
+  }
+  &__quantity-container {
+    margin-top: 0.5rem;
+    animation: fadeIn 0.6s ease-in-out;
+  }
+  &__quantity {
+    @extend .item-details__inputs;
+  }
+
+  &__header {
+    margin-bottom: 2rem;
+    @include tablet {
+      margin-bottom: 0.5rem;
+    }
+  }
+  &__box {
+    position: relative;
+
+    @include tablet {
+      width: 100%;
+    }
+  }
+  &__inputs {
+    margin-top: 0.22rem;
+    height: 2.25rem;
+    padding: 1rem;
+    width: 100%;
+    border-radius: 20px;
+    border: 1px solid $outline-color;
+    font-family: "Titillium Web", Times, serif;
+    font-size: 0.8rem;
+    transition: all 0.3s;
+    &--invalid {
+      border-color: #c94515;
+    }
+    &:hover {
+      border-color: $primary-cta-color;
+    }
+
+    &::placeholder {
+      color: $table-placeholder-text;
+      font-size: 0.8125rem;
+    }
+    &:focus {
+      outline: none;
+      border-color: $primary-cta-color;
+    }
+  }
+  &__description {
+    @extend .item-details__inputs;
+    width: 100%;
+    resize: none;
+    min-height: 7.5rem;
+    padding: 0.5rem 1rem;
+    overflow: visible;
+  }
+
+  &__name {
+    @extend .item-details__inputs;
+    font-size: 0.8rem;
+    padding: 0 1rem;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("../../assets/icons/arrow_drop_down-24px.svg");
+    background-position: right center;
+    background-repeat: no-repeat;
+    background-position: calc(100% - 20px) center;
+  }
+  &::-ms-expand {
+    display: none;
+  }
+  &::placeholder {
+    font-family: "Titillium Web", Times, serif;
+  }
+
+  @include tablet {
+    margin-right: 0;
+  }
+}
+.radio-buttons {
+  display: flex;
+  align-items: center;
+  &__instock,
+  &__outstock {
+    display: flex;
+    align-items: center;
+    margin-right: 4rem;
+    width: max-content;
+  }
+  &__input {
+    margin-right: 0.8rem;
+  }
+  &--inactive {
+    color: $table-placeholder-text;
+  }
+}
+
+.item-footer {
+  display: flex;
+  justify-content: space-around;
+  background-color: $page-background;
+  padding: 1rem 2rem;
+  gap: 1rem;
+
+  &__form-button {
+    flex: 1;
+    padding: 0.5rem 0;
+    border-radius: 20px;
+    border: none;
+    font-size: 0.8125rem;
+    font-family: "Titillium Web", Times, serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &--primary {
+      background-color: $primary-cta-color;
+      color: $global-color;
+      border: none;
+      &:hover {
+        background-color: #232940;
+      }
+    }
+    &--secondary {
+      border: 1px solid $outline-color;
+      background-color: transparent;
+      color: $table-placeholder-text;
+      &:hover {
+        background-color: #eaeaea;
+      }
+    }
+    @include tablet {
+      flex: initial;
+      padding: 0.5rem 1rem;
+    }
+  }
+  @include tablet {
+    justify-content: flex-end;
+  }
+}

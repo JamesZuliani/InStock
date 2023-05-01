@@ -156,6 +156,7 @@
     }
   }
 }
+
 .address-label {
   &__text {
     transition: text-decoration-color 0.5s;
@@ -167,14 +168,15 @@
     }
   }
 }
+
 .contact-name-label {
   &__text {
+    margin-left: 0.15rem;
     transition: text-decoration-color 0.5s;
     text-decoration: underline 0.1rem rgba(0, 0, 0, 0);
     cursor: pointer;
     &:hover {
       text-decoration-color: $outline-color;
-      
     }
   }
 }
@@ -185,14 +187,18 @@
   @include tablet {
     display: flex;
     width: 20%;
-    // margin-left: 1rem;
     height: fit-content;
+
+    &:nth-child(5) {
+      justify-content: center;
+    }
   }
 }
 
 .contact-info-label {
   width: 24%;
   &__text {
+    margin-left: 0.5rem;
     transition: text-decoration-color 0.5s;
     text-decoration: underline 0.1rem rgba(0, 0, 0, 0);
     cursor: pointer;
@@ -202,6 +208,7 @@
     }
   }
 }
+
 .actions-info-label {
   @include tablet {
     width: 20%;
