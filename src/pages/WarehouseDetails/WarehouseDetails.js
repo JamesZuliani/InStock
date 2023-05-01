@@ -230,7 +230,7 @@ function WarehouseDetails() {
                 toggleSortOrder("quantity");
               }}
             >
-              QTY
+              QUANTITY
             </p>
             <img
               className="quantity-label__icon sort-icon"
