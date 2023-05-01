@@ -33,7 +33,7 @@
   @include tablet {
     margin-top: 0;
     border-top: none;
-    border-bottom: 1px solid $outline-color;
+    // border-bottom: 1px solid $outline-color;
     display: flex;
     display: none;
   }
@@ -53,7 +53,7 @@
 
     @include tablet {
       display: flex;
-      padding: 0.4rem 2rem;
+      padding: 0.5rem 2rem;
       align-items: center;
     }
   }
@@ -77,7 +77,7 @@
   }
 }
 
-.information-container {
+.status-wrapper {
   width: 12rem;
 
   @include tablet {
@@ -86,7 +86,7 @@
   }
 }
 
-.name-container {
+.name-wrapper {
   padding: 0.8rem;
 
   @include tablet {
@@ -180,7 +180,7 @@
   }
 }
 
-.button-container {
+.button-container--inventory {
   width: 80%;
   margin: 0 auto;
   padding: 0 0.8rem;
@@ -194,7 +194,7 @@
   }
 }
 
-.action-icon {
+.action-icon--inventory {
   border-radius: 22px;
   transition: all 0.3s;
   padding: 0.2rem;

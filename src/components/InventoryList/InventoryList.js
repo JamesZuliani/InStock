@@ -18,11 +18,11 @@ export default function InventoryList({ inventory, handleModel }) {
       >
         <div className="item">
           <div className="item-wrapper">
-            <div className="item-name-container">
-              <div className="name-container">
-                <h5 className="name-container__label label">INVENTORY ITEM</h5>
+            <div className="item-name-wrapper">
+              <div className="name-wrapper">
+                <h5 className="name-wrapper__label label">INVENTORY ITEM</h5>
                 <div className="item-link__name">
-                  <p className="name-container__title">{item.item_name}</p>
+                  <p className="name-wrapper__title-inv">{item.item_name}</p>
                   <img src={vectorIcon} alt="vector-icon"></img>
                 </div>
               </div>
@@ -31,7 +31,7 @@ export default function InventoryList({ inventory, handleModel }) {
                 <p className="category-container__title">{item.category}</p>
               </div>
             </div>
-            <div className="information-container">
+            <div className="status-wrapper">
               <div className="status-container">
                 <h5 className="status-container__label label">STATUS</h5>
                 <p
@@ -56,29 +56,33 @@ export default function InventoryList({ inventory, handleModel }) {
               </div>
             </div>
           </div>
-          <div className="button-container">
+          <div className="button-container--inventory">
             <img
-             onClick={(e) => {
-              e.preventDefault()
-              handleModel(item)
-            }}
-              className="action-icon"
+              className="action-icon--inventory"
+              onClick={(e) => {
+                e.preventDefault();
+                handleModel(item);
+              }}
               src={deleteIcon}
               alt="delete-icon"
             ></img>
-            <img className="action-icon" src={editIcon} alt="edit-icon"></img>
+            <img
+              className="action-icon--inventory"
+              src={editIcon}
+              alt="edit-icon"
+            ></img>
           </div>
         </div>
         {/* this section of html is not rendered until tablet and desktop breakpoint */}
         <div
           className={
-            index !== item.length - 1
+            index !== inventory.length - 1
               ? "item item--fullscreen item--border"
               : "item item--fullscreen"
           }
         >
           <div className="item-link__name">
-            <p className="name-container__title">{item.item_name}</p>
+            <p className="name-wrapper__title-inv">{item.item_name}</p>
             <img
               src={vectorIcon}
               alt="vector-icon"
@@ -109,12 +113,12 @@ export default function InventoryList({ inventory, handleModel }) {
             <h5 className="location-container__label label">WAREHOUSE</h5>
             <p className="location-container__title">{item.warehouse_name}</p>
           </div>
-          <div className="button-container">
+          <div className="button-container--inventory">
             <img
-             onClick={(e) => {
-              e.preventDefault()
-              handleModel(item)
-            }}
+              onClick={(e) => {
+                e.preventDefault();
+                handleModel(item);
+              }}
               className="action-icon"
               src={deleteIcon}
               alt="delete-icon"

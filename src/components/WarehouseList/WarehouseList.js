@@ -23,7 +23,7 @@ export default function WarehouseList({ warehouses, handleClassToggle }) {
         {/* mobile view  */}
         <div className="warehouse">
           <div className="warehouse-wrapper">
-            <div className="location-container">
+            <div className="location-wrapper">
               <div className="warehouse-container">
                 <h5 className="warehouse-container__label label">WAREHOUSE</h5>
                 <div className="warehouse-link__name">

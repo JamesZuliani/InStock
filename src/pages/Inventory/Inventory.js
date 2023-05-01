@@ -84,7 +84,7 @@ export default function Inventory() {
         </div>
       </div>
       <div className="fullscreen-labels-inv">
-        <div className="inventory-label label--fullscreen">
+        <div className="inventory-label label-inv--fullscreen">
           <p
             onClick={() => {
               toggleSortOrder === "asc"
@@ -135,7 +135,7 @@ export default function Inventory() {
             alt="sort-icon"
           ></img>
         </div>
-        <div className="category-label label--fullscreen">
+        <div className="category-label label-inv--fullscreen">
           <p
             onClick={() => {
               toggleSortOrder === "asc"
@@ -185,7 +185,7 @@ export default function Inventory() {
             alt="sort-icon"
           ></img>
         </div>
-        <div className="status-label label--fullscreen">
+        <div className="status-label label-inv--fullscreen">
           <p
             className="status-label__text"
             onClick={() => {
@@ -235,7 +235,7 @@ export default function Inventory() {
             alt="sort-icon"
           ></img>
         </div>
-        <div className="quantity-label label--fullscreen">
+        <div className="quantity-label label-inv--fullscreen">
           <p
             className="quantity-label__text"
             onClick={() => {
@@ -285,7 +285,7 @@ export default function Inventory() {
             alt="sort-icon"
           ></img>
         </div>
-        <div className="location-label label--fullscreen">
+        <div className="location-label label-inv--fullscreen">
           <p
             className="location-label__text"
             onClick={() => {
@@ -335,7 +335,7 @@ export default function Inventory() {
             alt="sort-icon"
           ></img>
         </div>
-        <p className="actions-info-label label--fullscreen">ACTIONS</p>
+        <p className="actions-info-label-inv label-inv--fullscreen">ACTIONS</p>
       </div>
       <InventoryList inventory={inventory} handleModel={handleModel} />
       <DeleteInventory
